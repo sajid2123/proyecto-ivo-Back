@@ -12,8 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('diagnosticos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            //$table->id();
+            $table->bigIncrements('id_diagnostico'); // Clave primaria
+            $table->text('informe');
+            $table->text('tratamiento');
+            $table->date('fecha_creacion');
+            $table->unsignedBigInteger('id_medico');
+            $table->unsignedBigInteger('id_paciente');
+            $table->timestamps(); 
+
+            // Claves foráneas
+            $table->foreign('id_medico')->references('id_usuario_medico')->on('medico');
+            $table->foreign('id_paciente')->references('id_usuario_paciente')->on('paciente');
         });
     }
 
