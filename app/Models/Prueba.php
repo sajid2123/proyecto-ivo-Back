@@ -12,7 +12,7 @@ class Prueba extends Model
     protected $fillable = [
         'id_prueba',
         'informe',
-        'imagenes',
+        'imagen',
         'fecha',
         'id_usuario_medico',
         'id_usuario_paciente',

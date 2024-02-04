@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Diagnostico;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +9,20 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DiagnosticoFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Diagnostico::class;
+
     public function definition(): array
     {
         return [
-            //
+            'informe' => $this->faker->text(),
+            'tratamiento' => $this->faker->text(),
+            'fecha_creacion' => $this->faker->date(),
+            'id_medico' => function () {
+                return \App\Models\Medico::factory()->create()->id_usuario_medico;
+            },
+            'id_paciente' => function () {
+                return \App\Models\Paciente::factory()->create()->id_usuario_paciente;
+            },
         ];
     }
 }

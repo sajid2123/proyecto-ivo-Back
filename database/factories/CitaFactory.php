@@ -2,22 +2,33 @@
 
 namespace Database\Factories;
 
+use App\Models\Cita;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cita>
- */
 class CitaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    
+    protected $model = Cita::class;
+
+
+    public function definition()
     {
         return [
-            //
+            'sip' => $this->faker->randomNumber(),
+            'hora' => $this->faker->dateTime(),
+            'servicio' => $this->faker->sentence(),
+            'id_usuario_medico' => function () {
+                return \App\Models\Medico::factory()->create()->id_usuario_medico;
+            },
+            'id_usuario_administrativo' => function () {
+                return \App\Models\Administrativo::factory()->create()->id_usuario_administrativo;
+            },
+            'id_usuario_paciente' => function () {
+                return \App\Models\Paciente::factory()->create()->id_usuario_paciente;
+            },
+            'id_usuario_radiologo' => function () {
+                return \App\Models\Radiologo::factory()->create()->id_usuario_radiologo;
+            },
         ];
     }
 }

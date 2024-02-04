@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Administrativo;
+use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +11,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PacienteFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Paciente::class;
+
     public function definition(): array
     {
         return [
-            //
+            'id_usuario_administrativo' => function () {
+                return Administrativo::factory()->create()->id_usuario_administrativo;
+            }
         ];
     }
 }

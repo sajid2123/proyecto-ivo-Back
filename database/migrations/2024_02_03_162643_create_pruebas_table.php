@@ -15,10 +15,10 @@ return new class extends Migration
             //$table->id();
             $table->bigIncrements('id_prueba'); // Clave primaria
             $table->string('informe', 255);
-            $table->string('imagenes', 255);
+            $table->string('imagen', 255);
             $table->date('fecha');
             $table->unsignedBigInteger('id_usuario_radiologo');
-            $table->unsignedBigInteger('id_usuario_paciente'); 
+            $table->unsignedBigInteger('id_usuario_paciente');
             $table->unsignedBigInteger('id_usuario_medico');
             $table->timestamps();
 

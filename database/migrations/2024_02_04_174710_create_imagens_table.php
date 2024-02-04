@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('imagens', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
+            $table->unsignedBigInteger('id_prueba');
+            $table->string('imagen', 255);
             $table->timestamps();
+
+            // Clave primaria compuesta
+            $table->primary(['id_prueba', 'imagen']);
+
+            // Clave ajena
+            $table->foreign('id_prueba')->references('id_prueba')->on('pruebas');
+
         });
     }
 
