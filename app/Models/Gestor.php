@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Gestor extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_usuario_gestor', 
+    ];
 
-    protected $table = 'gestores';
+    protected $table = 'gestors';
     protected $primaryKey = 'id_usuario_gestor';
     public $incrementing = false;
 

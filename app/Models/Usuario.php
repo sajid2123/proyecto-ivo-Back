@@ -12,9 +12,18 @@ class Usuario extends Model
     protected $primaryKey = 'id_usuario';
 
     protected $fillable = [
-        'dni', 'nombre', 'apellido1', 'apellido2', 'Sexo', 
-        'fecha_nacimiento', 'correo', 'codigo_postal', 
-        'direccion', 'nombre_cuenta', 'contraseña', 'id_rol'
+        'dni',
+        'nombre',
+        'apellido1',
+        'apellido2',
+        'Sexo', 
+        'fecha_nacimiento',
+        'correo', 
+        'codigo_postal', 
+        'direccion', 
+        'nombre_cuenta', 
+        'contraseña', 
+        'id_rol',
     ];
 
     public function rol()
@@ -42,13 +51,13 @@ class Usuario extends Model
     
     public function paciente()
     {
-        return $this->hasOne(Administrativo::class, 'id_usuario_paciente');
+        return $this->hasOne(Paciente::class, 'id_usuario_paciente');
     }   
 
 
     public function radiologo()
     {
-        return $this->hasOne(Administrativo::class, 'id_usuario_radiolog');
+        return $this->hasOne(Radiologo::class, 'id_usuario_radiologo');
     }   
 
     

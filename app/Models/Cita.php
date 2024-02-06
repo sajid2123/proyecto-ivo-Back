@@ -10,7 +10,6 @@ class Cita extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_cita',
         'sip',
         'hora',
         'servicio',
