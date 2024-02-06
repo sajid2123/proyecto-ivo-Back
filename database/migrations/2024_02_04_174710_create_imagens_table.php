@@ -12,15 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('imagens', function (Blueprint $table) {
-            //$table->id();
+            $table->unsignedBigInteger('id_imagen');
             $table->unsignedBigInteger('id_prueba');
             $table->string('imagen', 255);
-            $table->timestamps();
-
-            // Clave primaria compuesta
-            $table->primary(['id_prueba', 'imagen']);
-
-            // Clave ajena
+            // Definir ambas columnas como clave primaria compuesta
+            $table->primary(['id_imagen', 'id_prueba']);
+        
+            // Definición de clave foránea
             $table->foreign('id_prueba')->references('id_prueba')->on('pruebas');
 
         });

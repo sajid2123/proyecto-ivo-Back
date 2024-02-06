@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Medico extends Model
 {
     use HasFactory;
+    
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'id_usuario_medico', 'id_usuario');
+    }
+
+    public function gestor()
+    {
+        return $this->belongsTo(Gestor::class, 'id_usuario_gestor', 'id_usuario_gestor');
+    }
+
+    public function servicio()
+    {
+        return $this->belongsTo(Servicio::class, 'id_servicio', 'id_servicio');
+    }
 }

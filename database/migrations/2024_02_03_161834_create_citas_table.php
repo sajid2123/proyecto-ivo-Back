@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('citas', function (Blueprint $table) {
-            //$table->id();
-            $table->bigIncrements('id_cita'); // Clave primaria
-            $table->integer('sip');
+            $table->id('id_cita');
+            $table->string('sip');
             $table->dateTime('hora');
             $table->string('servicio');
             $table->unsignedBigInteger('id_usuario_medico');
@@ -23,10 +22,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_usuario_radiologo');
 
             // Claves foráneas
-            $table->foreign('id_usuario_medico')->references('id_usuario_medico')->on('medico');
-            $table->foreign('id_usuario_administrativo')->references('id_usuario_administrativo')->on('administrativo');
-            $table->foreign('id_usuario_paciente')->references('id_usuario_paciente')->on('paciente');
-            $table->foreign('id_usuario_radiologo')->references('id_usuario_radiologo')->on('radiologo');
+            $table->foreign('id_usuario_medico')->references('id_usuario_medico')->on('medicos');
+            $table->foreign('id_usuario_administrativo')->references('id_usuario_administrativo')->on('administrativos');
+            $table->foreign('id_usuario_paciente')->references('id_usuario_paciente')->on('pacientes');
+            $table->foreign('id_usuario_radiologo')->references('id_usuario_radiologo')->on('radiologos');
 
             $table->timestamps();
         });
