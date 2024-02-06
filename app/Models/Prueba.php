@@ -10,14 +10,12 @@ class Prueba extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_prueba',
         'informe',
         'imagen',
         'fecha',
         'id_usuario_medico',
         'id_usuario_paciente',
         'id_usuario_radiologo',
-
     ];
 
     public function pacientes(){

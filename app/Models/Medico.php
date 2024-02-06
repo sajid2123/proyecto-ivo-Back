@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Medico extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_usuario_medico', 
+        'id_usuario_gestor',
+        'id_servicio',
+    ];
+    protected $table = 'medicos';
+    protected $primaryKey = 'id_usuario_medico';
+    public $incrementing = false;
     
     public function usuario()
     {

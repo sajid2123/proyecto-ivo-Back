@@ -10,7 +10,7 @@ class Paciente extends Usuario
     use HasFactory;
 
     protected $table = 'pacientes';
-    protected $primaryKey = 'id_usuario_pacientes';
+    protected $primaryKey = 'id_usuario_paciente';
     public $incrementing = false;
 
     protected $fillable = [

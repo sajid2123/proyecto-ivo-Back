@@ -11,9 +11,7 @@ class Imagen extends Model
 
     protected $fillable = [
         'id_prueba',
-        'imagen'
-
-
+        'imagen',
     ];
 
     public function pruebas(){
