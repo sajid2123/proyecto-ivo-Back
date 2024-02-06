@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('diagnosticos', function (Blueprint $table) {
-            //$table->id();
-            $table->bigIncrements('id_diagnostico'); // Clave primaria
+            $table->id('id_diagnostico');
             $table->text('informe');
             $table->text('tratamiento');
             $table->date('fecha_creacion');
@@ -22,8 +21,8 @@ return new class extends Migration
             $table->timestamps(); 
 
             // Claves foráneas
-            $table->foreign('id_medico')->references('id_usuario_medico')->on('medico');
-            $table->foreign('id_paciente')->references('id_usuario_paciente')->on('paciente');
+            $table->foreign('id_medico')->references('id_usuario_medico')->on('medicos');
+            $table->foreign('id_paciente')->references('id_usuario_paciente')->on('pacientes');
         });
     }
 

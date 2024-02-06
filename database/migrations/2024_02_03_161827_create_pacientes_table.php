@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pacientes', function (Blueprint $table) {
-            $table->id('id_usuario_paciente');
+            $table->unsignedBigInteger('id_usuario_paciente')->primary();
             $table->unsignedBigInteger('id_usuario_administrativo');
+            $table->string('sip');
+            $table->foreign('id_usuario_paciente')->references('id_usuario')->on('usuarios');
             $table->foreign('id_usuario_administrativo')->references('id_usuario_administrativo')->on('administrativos'); //Clave ajena
             $table->timestamps();
         });
