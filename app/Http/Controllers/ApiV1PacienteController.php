@@ -5,20 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 
-class PacienteController extends Controller
+class ApiV1PacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -35,14 +27,6 @@ class PacienteController extends Controller
      * Display the specified resource.
      */
     public function show(Paciente $paciente)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Paciente $paciente)
     {
         //
     }
