@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class GestorController extends Controller
 {
+
+    public function dashboard(){
+        return view('usuario.gestor.dashboard');
+    }
+    
+   
     /**
      * Display a listing of the resource.
      */
@@ -61,5 +67,9 @@ class GestorController extends Controller
     public function destroy(Gestor $gestor)
     {
         //
+    }
+
+    public function Nav(){
+        return view('usuario.gestor.nav');
     }
 }

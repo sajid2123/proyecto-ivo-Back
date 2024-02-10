@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rol;
 
-class Usuario
+class Gestor
 {
     /**
      * Handle an incoming request.
@@ -28,10 +28,7 @@ class Usuario
             }
         }
 
-        return redirect()->route('login_form')->with('error' , 'Please login first.' );
-     
-      
-
-        
+        return redirect()->route('login_form')->with('error' , 'Por favor, inicia sesión primero.');
+    
     }
 }

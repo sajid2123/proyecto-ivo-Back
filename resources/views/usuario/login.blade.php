@@ -6,44 +6,75 @@
     <title>Iniciar sesión</title>
     <!-- Incluye Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
-@if(Session::has('error'))
-{{ session::get('error')}}
-@endif
-<div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-center">Inicia sesión</div>
-                <div class="card-body">
+<div class="container-fluid ">
+    <div class="row heigth font color">
+        <div class="col-6 d-flex align-items-center justify-content-center ">
+        <img src="{{ asset('img/logo.jpg') }}" alt="Logo">
+        </div>
+        <div class="col-6  p-5 d-flex  justify-content-center flex-column">
+            <div class="row mb-2">
+                <div class="col-12 text-center">
+                    <h1 class="title">
+                        Inicia sesión
+                    </h1>
+                </div> 
+            </div>  
+            <div class="row mb-3">
+                <div class="col-12 text-center">
+                    <p class="sub-title">Introduzca su correo y contraseña</p>
+                </div>
+               
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 text-center px-5">
+                    @if(Session::has('error'))
+                        <p class="error">{{ session::get('error')}}</p> 
+                    @elseif(Session::has('logout'))
+                        <p class="logout">{{ session::get('logout')}}</p> 
+                    
+                    @endif
+                </div>
+               
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 px-5">
                     <form method="POST" action="{{ route('usuario.login') }}">
                         @csrf <!-- Token CSRF para proteger tu formulario -->
                         <div class="form-group">
                             <label for="email">Correo</label>
-                            <input type="email" class="form-control" id="email" name="email" required autofocus>
+                            <input type="email" class="form-control input-style" id="email" name="email" required autofocus>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control input-style" id="password" name="password" required>
                         </div>
 
-                        <div class="form-group form-check">
+                        <div class="form-group form-check d-flex align-items-center">
                             <input type="checkbox" class="form-check-input" id="remember" name="remember">
                             <label class="form-check-label" for="remember">Recuérdame</label>
                         </div>
-
-                        <button type="submit" class="btn btn-primary btn-block">Inicia sesión</button>
+                        <div class="row justify-content-center">
+                            <div class="col-4">
+                                <button type="submit" class="btn submit-btn btn-block">Inicia sesión</button>
+                            </div>
+                        </div>
+                        
 
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 ¿Has olvidado tu contraseña?
                             </a>
                         @endif
+            
                     </form>
                 </div>
+            
             </div>
+           
         </div>
     </div>
 </div>
