@@ -1,0 +1,28 @@
+@font-face {
+    font-family: manrope;
+    src: url('../font/Manrope-VariableFont_wght.otf');
+}
+.container-fluid{
+    padding-left: 0rem;
+    padding-right: 0rem;
+    overflow: hidden;
+}
+.font{
+    font-family: manrope;
+}
+.color{
+    color:  #092C4C;
+}
+.title{
+    font-weight: bolder;
+}
+.btn-add-user{
+    background-color: #092C4C;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.btn-add-user:hover{
+    color: white;
+}

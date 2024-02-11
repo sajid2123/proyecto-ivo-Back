@@ -12,3 +12,51 @@
 .color{
     color:  #092C4C;
 }
+.nav-style{
+    background-color: #092C4C;
+    height: 100vh;
+    color: white;
+}
+.white{
+    color: #DCECFB;
+}
+.nav-opcion{
+    text-decoration: none;
+    color: #DCECFB;
+}
+.nav-opcion:hover{
+    background-color: #DCECFB;
+    border-radius: 10px;
+    color: #092C4C;
+}
+.pointer{
+    cursor: pointer;
+}
+.a-tag{
+    text-decoration: none;
+    color: white
+}
+.a-tag:hover{
+    text-decoration: none;
+    color: white
+}
+.nombre{
+    font-size: 20px;
+    color: #DCECFB;
+}
+.correo{
+    font-size: 15px;
+    color: #DCECFB;
+}
+.logout-icon{
+    font-size: 20;
+    color: #DCECFB;
+}
+.mt{
+    margin-top: 150px;
+}
+.nav-active {
+    background-color: #DCECFB;
+    color:  #092C4C;
+    border-radius: 10px;
+}
