@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 class UsuarioController extends Controller
 {
-   
+
     /**
      * Display a listing of the resource.
      */
@@ -15,14 +15,14 @@ class UsuarioController extends Controller
     {
         return view('usuario.login');
     }
-    
+
     public function Login(Request $request){
-        
+
         // dd($request->all());
         $check = $request->all();
 
         $credentials = [
-            'correo' => $request->input('email'), 
+            'correo' => $request->input('email'),
             'password' => $request->input('password')
         ];
         // dd($credentials);
@@ -31,15 +31,14 @@ class UsuarioController extends Controller
         }else {
             return redirect()->back()->with('error', 'La dirección de correo electrónico o la contraseña no son correctos. Verifica tus datos e inténtalo otra vez.')->withInput();
         }
-        
+
     }
     public function logout(Request $request)
      {
          Auth::guard('usuario')->logout();
          return redirect()->route('login_form')->with('logout' , 'Tu sesión ha sido cerrada con éxito.' );
      }
-    
-    
+
     /**
      * Show the form for creating a new resource.
      */
