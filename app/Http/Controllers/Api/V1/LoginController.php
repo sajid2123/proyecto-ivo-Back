@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash; // Agregado para usar la función Hash
 use App\Models\Usuario;
 
 class LoginController extends Controller
@@ -23,8 +24,8 @@ class LoginController extends Controller
             // Buscar usuario por correo electrónico
             $user = Usuario::where('correo', $credentials['correo'])->first();
 
-            // Verificar si el usuario existe y la contraseña coincide
-            if ($user && $user->password === $credentials['password']) {
+            // Verificar si el usuario existe y la contraseña coincide usando Hash::check()
+            if ($user && Hash::check($credentials['password'], $user->password)) {
                 // Autenticar al usuario
                 Auth::login($user);
 
