@@ -4,16 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
-
+use Auth;
 class UsuarioController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('usuario.login');
     }
+    public function dashboard(){
+        return view('usuario.gestor.dashboard');
+    }
+    public function Login(Request $request){
+
+        // dd($request->all());
+        $check = $request->all();
+
+        $credentials = [
+            'correo' => $request->input('email'),
+            'password' => $request->input('password')
+        ];
+        // dd($credentials);
+        if (Auth::guard('usuario')->attempt($credentials)) {
+            return redirect()->route('gestor.dashboard');
+        }else {
+            return redirect()->back()->with('error', 'Invalid credentials')->withInput();
+        }
+
+    }
+
 
     /**
      * Show the form for creating a new resource.

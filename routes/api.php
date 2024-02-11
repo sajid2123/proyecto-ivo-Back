@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::group(['prefix' => 'v1'], function () {
+    Route::post('login', [LoginController::class, 'store']);
+});
+
+
 Route::apiResource('v1/pacientes', App\Http\Controllers\Api\V1\PacienteController::class);
+
+
+Route::apiResource('v1/usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
+Route::apiResource('v1/gestores', App\Http\Controllers\Api\V1\GestorController::class);
+
