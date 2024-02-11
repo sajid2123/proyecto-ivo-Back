@@ -15,9 +15,7 @@ class UsuarioController extends Controller
     {
         return view('usuario.login');
     }
-    public function dashboard(){
-        return view('usuario.gestor.dashboard');
-    }
+
     public function Login(Request $request){
 
         // dd($request->all());
@@ -31,11 +29,15 @@ class UsuarioController extends Controller
         if (Auth::guard('usuario')->attempt($credentials)) {
             return redirect()->route('gestor.dashboard');
         }else {
-            return redirect()->back()->with('error', 'Invalid credentials')->withInput();
+            return redirect()->back()->with('error', 'La dirección de correo electrónico o la contraseña no son correctos. Verifica tus datos e inténtalo otra vez.')->withInput();
         }
 
     }
-
+    public function logout(Request $request)
+     {
+         Auth::guard('usuario')->logout();
+         return redirect()->route('login_form')->with('logout' , 'Tu sesión ha sido cerrada con éxito.' );
+     }
 
     /**
      * Show the form for creating a new resource.
