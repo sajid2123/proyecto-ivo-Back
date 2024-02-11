@@ -43,9 +43,12 @@
                 <div class="col-12 px-5">
                     <form method="POST" action="{{ route('usuario.login') }}">
                         @csrf <!-- Token CSRF para proteger tu formulario -->
+                        <label for="email">Correo</label>
                         <div class="form-group">
-                            <label for="email">Correo</label>
-                            <input type="email" class="form-control input-style" id="email" name="email" required autofocus>
+                            <div class="input-group">
+                                <input type="email" class="form-control input-style" id="email" name="email" required autofocus>
+                            </div>
+                            
                         </div>
 
                         <div class="form-group">
