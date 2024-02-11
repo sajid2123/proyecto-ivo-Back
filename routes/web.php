@@ -27,11 +27,15 @@ Route::get('/hola', function () {
 
 Route::get('/login', [UsuarioController::class, 'Index'])->name('login_form');
 Route::post('/login/owner', [UsuarioController::class, 'Login'])->name('usuario.login');
-Route::get('/dashboard', [GestorController::class, 'Dashboard'])->name('gestor.dashboard')->middleware('gestor');
-Route::get('/logout', [UsuarioController::class, 'logout'])->name('usuario.logout')->middleware('gestor');
 
 
-Route::get('/nav', [GestorController::class, 'Nav'])->name('nav_bar');
+
+Route::group(['middleware' => 'gestor'], function(){
+    // Route::get('/usuario', [GestorController::class, 'Dashboard'])->name('gestor.dashboard');
+    Route::get('/logout', [UsuarioController::class, 'logout'])->name('usuario.logout');
+    Route::get('/usuario', [GestorController::class, 'Dashboard'])->name('gestor.dashboard');
+
+});
 
 
 
