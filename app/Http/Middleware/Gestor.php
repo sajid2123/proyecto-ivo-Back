@@ -17,18 +17,19 @@ class Gestor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
+
         if (Auth::guard('usuario')->check()) {
 
             $user = Auth::guard('usuario')->user();
             $role = Rol::find($user->id_rol);
-       
+            //dd($role);
+
             if ($role->nombre == 'Gestor') {
                 return $next($request);
             }
         }
 
         return redirect()->route('login_form')->with('error' , 'Por favor, inicia sesión primero.');
-    
+
     }
 }
