@@ -1,0 +1,14 @@
+@font-face {
+    font-family: manrope;
+    src: url('../font/Manrope-VariableFont_wght.otf');
+}
+
+.heigth{
+    height: 100vh;
+}
+.font{
+    font-family: manrope;
+}
+.color{
+    color:  #092C4C;
+}
