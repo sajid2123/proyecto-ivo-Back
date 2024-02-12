@@ -14,18 +14,14 @@
         <div class="col-10 p-0 px-5">
             <div class="row mt-4">
                 <div class="col-12">
-                    <h1 class="title">Usuarios</h1>
+                    <h1 class="title">Alta Usuario</h1>
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-6">
-                     <h1>Medico</h1>
-                </div>
-                <div class="col-6 d-flex justify-content-end">
-                    <a href="{{route('gestor.add-usuario')}}" class="btn-add-user">Add Usuario</a>
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="" class="btn-add-user">Add Servicio</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

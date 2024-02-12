@@ -6,6 +6,7 @@
 <!-- css  -->
 <link rel="stylesheet" href="{{ asset('css/gestor.css') }}">
 
+
 <div class="container-fluid p-0 font">
     <div class="row">
         <div class="col-2 p-0">
@@ -14,18 +15,14 @@
         <div class="col-10 p-0 px-5">
             <div class="row mt-4">
                 <div class="col-12">
-                    <h1 class="title">Usuarios</h1>
+                    <h1 class="title">Servicios</h1>
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-6">
-                     <h1>Medico</h1>
-                </div>
-                <div class="col-6 d-flex justify-content-end">
-                    <a href="{{route('gestor.add-usuario')}}" class="btn-add-user">Add Usuario</a>
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="" class="btn-add-user">Add Usuario</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

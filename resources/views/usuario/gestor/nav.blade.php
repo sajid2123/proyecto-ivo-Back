@@ -18,20 +18,21 @@
                     <div class="col-12">
                         <ul class="nav navbar-nav d-flex flex-column align-items-center">
                             <li class="nav-item pointer">
-                                <a class="nav-link  px-3 nav-opcion {{ request()->is('usuario', 'usuario/*') ? 'nav-active' : '' }}">
+                                <a class="nav-link  px-3 nav-opcion {{ request()->is('usuario', 'usuario/*') ? 'nav-active' : '' }}" href="{{route('gestor.usuario')}}">
                                     <i class="fa-solid fa-user mx-2"></i>
                                     Usaurio
                                 </a>
                             </li>
                             <li class="nav-item mt-3 pointer">
-                            <a class="nav-link  px-3 nav-opcion">
-                                Servicios
-                            </a>
+                                <a class="nav-link  px-3 nav-opcion {{ request()->is('servicio', 'servicio/*') ? 'nav-active' : '' }}" href="{{route('gestor.servicio')}}">
+                                    Servicios
+                                </a>
                             </li>
                             <li class="nav-item mt-3 pointer">
-                            <a class="nav-link  px-3 nav-opcion" >
-                                Roles
-                            </a>
+                                <a class="nav-link  px-3 nav-opcion {{ request()->is('rol', 'rol/*') ? 'nav-active' : '' }}" href="{{route('gestor.rol')}}">
+                                    <i class="fa-solid fa-user-gear mx-2"></i>
+                                    Roles
+                                </a>
                             </li>
                         </ul>
                     </div>

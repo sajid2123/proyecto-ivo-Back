@@ -27,17 +27,21 @@ class UsuarioController extends Controller
         ];
         //dd($credentials);
         if (Auth::guard('usuario')->attempt($credentials)) {
-            return redirect()->route('gestor.dashboard');
+            return redirect()->route('gestor.usuario');
         }else {
             return redirect()->back()->with('error', 'La dirección de correo electrónico o la contraseña no son correctos. Verifica tus datos e inténtalo otra vez.')->withInput();
         }
 
     }
     public function logout(Request $request)
-     {
+    {
          Auth::guard('usuario')->logout();
          return redirect()->route('login_form')->with('logout' , 'Tu sesión ha sido cerrada con éxito.' );
-     }
+    }
+    public function addUsuario()
+    {
+        return view('usuario.gestor.addUsuario');
+    }
 
     /**
      * Show the form for creating a new resource.
