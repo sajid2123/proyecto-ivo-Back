@@ -25,7 +25,7 @@ class UsuarioController extends Controller
             'correo' => $request->input('email'),
             'password' => $request->input('password')
         ];
-        // dd($credentials);
+        //dd($credentials);
         if (Auth::guard('usuario')->attempt($credentials)) {
             return redirect()->route('gestor.dashboard');
         }else {

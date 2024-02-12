@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AuthFrontController extends Controller
 {
@@ -15,12 +16,22 @@ class AuthFrontController extends Controller
     public function login()
     {
         $credentials = request(['correo', 'password']);
+        //$credentials['password'] = bcrypt($credentials['password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth() ->attempt($credentials)) {
             return response()->json(['error' => 'No autorizado'], 401);
         }
 
-        return $this->respondWithToken($token);
+        $user = auth()->user(); // Obtener el usuario autenticado
+
+        return response()->json([
+            'token' => $token,
+            //'user' => $user // Devolver todos los datos del usuario
+            'user' => [
+                'id_usuario' => $user->id_usuario, // Obtener el ID del usuario
+                'id_rol' => $user->id_rol, // Obtener el ID del rol del usuario
+            ]
+        ]);
     }
 
     public function me()
