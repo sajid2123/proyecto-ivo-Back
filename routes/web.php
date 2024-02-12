@@ -31,9 +31,13 @@ Route::post('/login/owner', [UsuarioController::class, 'Login'])->name('usuario.
 
 
 Route::group(['middleware' => 'gestor'], function(){
-    // Route::get('/usuario', [GestorController::class, 'Dashboard'])->name('gestor.dashboard');
+    Route::get('/servicio', [GestorController::class, 'Servicio'])->name('gestor.servicio');
+    Route::get('/rol', [GestorController::class, 'Rol'])->name('gestor.rol');
+    Route::get('/usuario', [GestorController::class, 'Dashboard'])->name('gestor.usuario');
+
+    Route::get('/usuario/add-usuario', [UsuarioController::class, 'addUsuario'])->name('gestor.add-usuario');
+
     Route::get('/logout', [UsuarioController::class, 'logout'])->name('usuario.logout');
-    Route::get('/usuario', [GestorController::class, 'Dashboard'])->name('gestor.dashboard');
 
 });
 

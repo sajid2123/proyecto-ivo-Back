@@ -28,6 +28,7 @@
     background-color: #DCECFB;
     border-radius: 10px;
     color: #092C4C;
+    padding: 7px 50px;
 }
 .pointer{
     cursor: pointer;
@@ -59,4 +60,5 @@
     background-color: #DCECFB;
     color:  #092C4C;
     border-radius: 10px;
+    padding: 7px 50px;
 }

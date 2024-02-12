@@ -11,7 +11,12 @@ class GestorController extends Controller
     public function dashboard(){
         return view('usuario.gestor.dashboard');
     }
-    
+    public function servicio(){
+        return view('usuario.gestor.servicio');
+    }
+    public function rol(){
+        return view('usuario.gestor.rol');
+    }
    
     /**
      * Display a listing of the resource.
