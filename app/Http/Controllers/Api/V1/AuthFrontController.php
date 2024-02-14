@@ -23,14 +23,21 @@ class AuthFrontController extends Controller
         }
 
         $user = auth()->user(); // Obtener el usuario autenticado
+        $customClaims = [
+            'nombre' => $user->nombre,
+            'apellido1' => $user->apellido1,
+            'correo' => $user->correo,
+        ];
+
+        $token = auth()->claims($customClaims)->attempt($credentials);
 
         return response()->json([
             'token' => $token,
-            //'user' => $user // Devolver todos los datos del usuario
-            'user' => [
+            'user' => $user // Devolver todos los datos del usuario
+            /*'user' => [
                 'id_usuario' => $user->id_usuario, // Obtener el ID del usuario
                 'id_rol' => $user->id_rol, // Obtener el ID del rol del usuario
-            ]
+            ]*/
         ]);
     }
 

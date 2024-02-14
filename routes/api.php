@@ -34,13 +34,19 @@ Route::group([
 ], function ($router) {
 
     Route::post('login', [AuthFrontController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
+    /*Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('me', [AuthController::class, 'me']);
+    Route::post('me', [AuthController::class, 'me']);*/
+
+    Route::apiResource('pacientes', App\Http\Controllers\Api\V1\PacienteController::class);
+    Route::apiResource('citas', App\Http\Controllers\Api\V1\CitaController::class);
+    Route::post('crear-citas', [App\Http\Controllers\Api\V1\CitaController::class, 'store']);
+    Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
+    //Route::get('/pacientes/{id}', [App\Http\Controllers\Api\V1\PacienteController::class, 'show']);
 
 });
 
-Route::apiResource('v1/pacientes', App\Http\Controllers\Api\V1\PacienteController::class);
+
 
 
 Route::apiResource('v1/usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);

@@ -11,9 +11,16 @@ class PacienteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Paciente::all();
+        $idUsuarioAdministrativo = $request->input('id_usuario_administrativo');
+
+        // Lógica para recuperar pacientes según el ID del administrativo
+        $pacientes = Paciente::with('usuario')->where('id_usuario_administrativo', $idUsuarioAdministrativo)->get();
+
+
+
+        return response()->json(['pacientes' => $pacientes], 200);
     }
 
     /**
@@ -27,9 +34,15 @@ class PacienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Paciente $paciente)
+    public function show($id)
     {
-        return $paciente;
+        $paciente = Paciente::with('usuario')->find($id); // Buscar al paciente por su ID
+
+        if (!$paciente) {
+            return response()->json(['error' => 'Paciente no encontrado'], 404); // Devolver un error si el paciente no se encuentra
+        }
+
+        return response()->json($paciente, 200); // Devolver el paciente como respuesta JSON
     }
 
     /**

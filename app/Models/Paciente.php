@@ -18,6 +18,10 @@ class Paciente extends Usuario
         'id_usuario_administrativo'
     ];
 
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'id_usuario_paciente');
+    }
 
     public function diagnosticos()
     {
