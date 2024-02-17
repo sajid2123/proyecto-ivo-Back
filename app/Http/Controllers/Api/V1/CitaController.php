@@ -34,10 +34,10 @@ class CitaController extends Controller
         'id_usuario_paciente' => 'required|exists:pacientes,id_usuario_paciente',
         'hora' => 'required',
         'sip'=>'required',
-        'servicio' => 'required',
-        'id_usuario_medico' => 'required',
+        'id_servicio' => 'required',
+        'id_usuario_medico' => '',
         'id_usuario_administrativo' => 'required',
-        'id_usuario_radiologo' => 'required'
+        'id_usuario_radiologo' => ''
         // Agrega aquí las validaciones necesarias para los demás campos de la cita
     ]);
 
@@ -46,7 +46,7 @@ class CitaController extends Controller
     $cita->id_usuario_paciente = $request->input('id_usuario_paciente');
     $cita->hora = $request->input('hora');
     $cita->sip = $request->input('sip');
-    $cita->servicio = $request->input('servicio');
+    $cita->id_servicio = $request->input('id_servicio');
     $cita->id_usuario_medico = $request->input('id_usuario_medico');
     $cita->id_usuario_administrativo = $request->input('id_usuario_administrativo');
     $cita->id_usuario_radiologo = $request->input('id_usuario_radiologo');

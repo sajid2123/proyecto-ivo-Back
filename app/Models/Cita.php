@@ -12,7 +12,7 @@ class Cita extends Model
     protected $fillable = [
         'sip',
         'hora',
-        'servicio',
+        'id_servicio',
         'id_usuario_medico',
         'id_usuario_paciente',
         'id_usuario_radiologo',

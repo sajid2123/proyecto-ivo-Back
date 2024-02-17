@@ -42,6 +42,7 @@ Route::group([
     Route::apiResource('citas', App\Http\Controllers\Api\V1\CitaController::class);
     Route::post('crear-citas', [App\Http\Controllers\Api\V1\CitaController::class, 'store']);
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
+    Route::apiResource('servicios', App\Http\Controllers\Api\V1\ServicioController::class);
     //Route::get('/pacientes/{id}', [App\Http\Controllers\Api\V1\PacienteController::class, 'show']);
 
 });
