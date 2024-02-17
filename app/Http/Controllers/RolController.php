@@ -12,9 +12,10 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $rols = Rol::all();
+        return view('usuario.gestor.rol.rol', compact('rols'));
     }
-
+   
     /**
      * Show the form for creating a new resource.
      */
