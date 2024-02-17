@@ -11,8 +11,7 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
-
-<div class="container-fluid p-0 font colors">
+<div class="container-fluid p-0 font">
     <div class="row">
         <div class="col-2 p-0">
             @include('usuario.gestor.nav')
@@ -20,31 +19,12 @@
         <div class="col-10 p-0 px-5">
             <div class="row mt-4">
                 <div class="col-12">
-                    <h1 class="title">Usuarios</h1>
+                    <h1 class="title">Rol</h1>
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-6 p-0">
-                <form method="GET" action="">
-                    <select name="tipo_usuario" class="select" onchange="this.form.submit()">
-                        <option value="Médico" {{ $tipo_usuario == 'Médico' ? 'selected' : '' }}>Médico</option>
-                        <option value="Radiólogo" {{ $tipo_usuario == 'Radiólogo' ? 'selected' : '' }}>Radiólogo</option>
-                        <option value="Gestor" {{ $tipo_usuario == 'Gestor' ? 'selected' : '' }}>Gestor</option>
-                        <option value="Administrativo" {{ $tipo_usuario == 'Administrativo' ? 'selected' : '' }}>Administrativo</option>
-                    </select>
-                </form>
-                </div>
-                <div class="col-6 d-flex justify-content-end p-0">
-                    <a href="{{route('gestor.add-usuario')}}" class="btn-add-user py-0">Add Usuario</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="" class="btn-add-user">Add Servicio</a>
                 </div>
             </div>
             <div class="row mt-5">
@@ -52,26 +32,24 @@
                     <table class="table table-bordered" id="usuarios-table">
                         <thead>
                             <tr>
-                                <th>DNI</th>
                                 <th>Nombre</th>
-                                <th>Apellidos</th>
+                                <th>Fecha creación</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($usuarios as $usuario)
+                            @foreach($rols as $rol)
                                 <tr>
-                                    <td>{{ $usuario->dni }}</td>
-                                    <td>{{ $usuario->nombre }}</td>
-                                    <td>{{ $usuario->apellido1 . " " .  $usuario->apellido2}}</td>
+                                    <td>{{ $rol->nombre }}</td>
+                                    <td>{{ $rol->fecha_creacion }}</td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="{{ route('usuario.perfil' , ['id' => $usuario->id_usuario])}}">
+                                        <a href="{{ route('usuario.perfil' , ['id' => $rol->id_rol])}}">
                                             <i class="fa-solid fa-eye color"></i>
                                         </a>
-                                        <a href="{{ route('usuario.edit' , ['id' => $usuario->id_usuario])}}">
+                                        <a href="{{ route('usuario.edit' , ['id' => $rol->id_rol])}}">
                                             <i class="fa-solid fa-pen-to-square mx-3 color"></i>
                                         </a>
-                                        <form action="{{ route('usuario.destroy', ['id' => $usuario->id_usuario]) }}" method="POST">
+                                        <form action="{{ route('usuario.destroy', ['id' => $rol->id_rol]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="color delete-btn-style">
@@ -90,10 +68,8 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
     $(document).ready(function() {
         new DataTable('#usuarios-table');
     });
 </script>
-

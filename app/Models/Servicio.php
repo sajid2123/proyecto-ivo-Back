@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Servicio extends Model
 {
     use HasFactory;
-    
+    protected $primaryKey = 'id_servicio';
     protected $fillable = [
         'jefe_departamento',
         'fecha_creacion',

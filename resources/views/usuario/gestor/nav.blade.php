@@ -6,7 +6,7 @@
 <!-- Css  -->
 <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 
-<div class="container-fluid font">
+<div class="container-fluid font ht-100">
         <div class="row">
             <div class="col-2 position-fixed nav-style ">
                 <div class="row pt-5">
@@ -18,18 +18,18 @@
                     <div class="col-12">
                         <ul class="nav navbar-nav d-flex flex-column align-items-center">
                             <li class="nav-item pointer">
-                                <a class="nav-link  px-3 nav-opcion {{ request()->is('usuario', 'usuario/*') ? 'nav-active' : '' }}" href="{{route('gestor.usuario')}}">
+                                <a class="nav-link  px-3  {{ request()->is('usuario', 'usuario/*') ? 'nav-active' : 'nav-opcion' }}" href="{{route('gestor.usuario')}}">
                                     <i class="fa-solid fa-user mx-2"></i>
                                     Usaurio
                                 </a>
                             </li>
                             <li class="nav-item mt-3 pointer">
-                                <a class="nav-link  px-3 nav-opcion {{ request()->is('servicio', 'servicio/*') ? 'nav-active' : '' }}" href="{{route('gestor.servicio')}}">
+                                <a class="nav-link  px-3  {{ request()->is('servicio', 'servicio/*') ? 'nav-active' : 'nav-opcion' }}" href="{{route('gestor.servicio')}}">
                                     Servicios
                                 </a>
                             </li>
                             <li class="nav-item mt-3 pointer">
-                                <a class="nav-link  px-3 nav-opcion {{ request()->is('rol', 'rol/*') ? 'nav-active' : '' }}" href="{{route('gestor.rol')}}">
+                                <a class="nav-link  px-3  {{ request()->is('rol', 'rol/*') ? 'nav-active' : 'nav-opcion' }}" href="{{route('gestor.rol')}}">
                                     <i class="fa-solid fa-user-gear mx-2"></i>
                                     Roles
                                 </a>
@@ -38,14 +38,14 @@
                     </div>
                 </div>  
                 <div class="row mt">
-                    <div class="col-12  d-flex align-items-center justify-content-center">
-                        <a href="" class="a-tag d-flex flex-column mx-4">
-                            <span class="nombre">{{Auth::guard('usuario')->user()->nombre}}</span>
-                            <span class="correo">{{Auth::guard('usuario')->user()->correo}}</span>
-                        </a>
-                        <a href="{{route('usuario.logout')}}" class="a-tag logout-icon">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        </a>
+                    <div class="col-12  d-flex align-items-end justify-content-center ">
+                            <a href="" class="a-tag d-flex flex-column mx-4">
+                                <span class="nombre">{{Auth::guard('usuario')->user()->nombre}}</span>
+                                <span class="correo">{{Auth::guard('usuario')->user()->correo}}</span>
+                            </a>
+                            <a href="{{route('usuario.logout')}}" class="a-tag logout-icon">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            </a>
                     </div>
                 
                 </div>

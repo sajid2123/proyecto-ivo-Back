@@ -17,12 +17,92 @@
     font-weight: bolder;
 }
 .btn-add-user{
+    display: flex;
+    align-items: center;
     background-color: #092C4C;
     color: white;
-    padding: 15px 40px;
+    padding: 0px 30px;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .btn-add-user:hover{
+    color: white;
+}
+.select{
+    background-color: #092C4C;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+}
+.select option{
+    background-color: white;
+    color: #092C4C;
+    padding: 10px 0px;
+}
+.select option:hover{
+    background-color: #092C4C;
+    color: white;
+    padding: 10px 0px;
+}
+
+.active-paso{
+    border-bottom: 2px solid #092C4C;
+    font-weight: bolder;
+    font-size: 25px;
+}
+.non-active-paso{
+    border-bottom: 2px solid #DCECFB;
+    font-size: 25px;
+}
+
+.label-personalizado{
+    color: #092C4C;
+    font-size: 18px;
+    font-weight: bold;
+}
+.btn-cancelar{
+    background-color: #092C4C;
+    color: white;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-cancelar:hover{
+    color: white;
+
+}
+.btn-pasos{
+    display: flex;
+    align-content: center;
+    background-color: #092C4C;
+    color: white;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-pasos:hover{
+    color: white;
+}
+.titulo-fomulario-add-usuario{
+    font-size: 20px;
+}
+.delete-btn-style{
+    border: none;
+    background-color: white;
+}
+.btn-add-servicio{
+    display: flex;
+    align-items: center;
+    background-color: #092C4C;
+    color: white;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn-add-servicio:hover{
     color: white;
 }

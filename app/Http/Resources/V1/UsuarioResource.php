@@ -16,7 +16,6 @@ class UsuarioResource extends JsonResource
     public function toArray(Request $request): array
     {
         $rol = Rol::find($this->id_rol);
-
         return [
             'dni' => $this->dni,
             'nombre' => $this->nombre,

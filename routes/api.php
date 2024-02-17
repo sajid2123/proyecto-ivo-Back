@@ -45,10 +45,14 @@ Route::group([
     Route::apiResource('servicios', App\Http\Controllers\Api\V1\ServicioController::class);
     //Route::get('/pacientes/{id}', [App\Http\Controllers\Api\V1\PacienteController::class, 'show']);
 
+
 });
 
 
 
+Route::apiResource('v1/pacientes', App\Http\Controllers\Api\V1\PacienteController::class);
+
 Route::apiResource('v1/usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
 Route::apiResource('v1/gestores', App\Http\Controllers\Api\V1\GestorController::class);
+
 
