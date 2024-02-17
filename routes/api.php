@@ -49,7 +49,6 @@ Route::group([
 
 
 
-
 Route::apiResource('v1/usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
 Route::apiResource('v1/gestores', App\Http\Controllers\Api\V1\GestorController::class);
 
