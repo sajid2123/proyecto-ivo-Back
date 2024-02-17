@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Gestor;
 use Illuminate\Http\Request;
+use App\Models\Rol;
+use App\Models\Usuario;
 
 class GestorController extends Controller
 {
 
-    public function dashboard(){
-        return view('usuario.gestor.dashboard');
+    public function dashboard(Request $request){
+
+        $tipo_usuario = $request->input('tipo_usuario', 'Médico'); 
+        $rol = Rol::where('nombre', $tipo_usuario)->first();
+        $usuarios = Usuario::where('id_rol', $rol->id_rol)->get();
+        return view('usuario.gestor.dashboard', compact('usuarios', 'tipo_usuario'));
     }
-    public function servicio(){
-        return view('usuario.gestor.servicio');
-    }
-    public function rol(){
-        return view('usuario.gestor.rol');
-    }
-   
+    
     /**
      * Display a listing of the resource.
      */

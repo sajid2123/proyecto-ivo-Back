@@ -1,0 +1,26 @@
+.pointer{
+    cursor: pointer;
+}
+.a-tag-breadcrumb{
+    text-decoration: none;
+    color: #092C4C;
+}
+.a-tag-breadcrumb:hover{
+    text-decoration: none;
+    color: #092C4C;
+}
+.activePage-breadcrumnb{
+
+    font-weight: 900;
+} 
+.size{
+    font-size: 16px;
+}
+.container-fluid{
+    padding-left: 0rem;
+    padding-right: 0rem;
+    overflow: hidden;
+}
+.border-b{
+    border-bottom: 1px solid #092C4C;
+}

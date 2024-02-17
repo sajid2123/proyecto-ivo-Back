@@ -7,12 +7,32 @@ use Illuminate\Http\Request;
 
 class ServicioController extends Controller
 {
+   
+    public function addServicio(){
+        $breadcrumbs = [
+            ['volver' => 'Volver', 'routa-volver' => route('gestor.servicio')],
+            ['nav-opcion-1' => 'Servicios', 'routa-opcion-1' => route('gestor.servicio')],
+            ['nav-opcion-2' => 'Alta servicio', 'routa-opcion-2' => null]
+        ];
+        return view('usuario.gestor.servicio.addServicio', compact('breadcrumbs'));
+    }
+    public function perfil($id){
+        $breadcrumbs = [
+            ['volver' => 'Volver', 'routa-volver' => route('gestor.servicio')],
+            ['nav-opcion-1' => 'Servicios', 'routa-opcion-1' => route('gestor.servicio')],
+            ['nav-opcion-2' => 'Alta servicio', 'routa-opcion-2' => null]
+        ];
+        $servicio = Servicio::findOrFail($id);
+      
+        return view('usuario.gestor.servicio.edit', compact('servicio', 'breadcrumbs'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $servicios = Servicio::all();
+        return view('usuario.gestor.servicio.servicio', compact('servicios'));
     }
 
     /**
@@ -28,7 +48,7 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -42,9 +62,15 @@ class ServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Servicio $servicio)
+    public function edit($id)
     {
-        //
+        $breadcrumbs = [
+            ['volver' => 'Volver', 'routa-volver' => route('gestor.servicio')],
+            ['nav-opcion-1' => 'Servicios', 'routa-opcion-1' => route('gestor.servicio')],
+            ['nav-opcion-2' => 'Alta servicio', 'routa-opcion-2' => null]
+        ];
+        $servicio = Servicio::findOrFail($id);
+        return view('usuario.gestor.servicio.datosServicio', compact('servicio', 'breadcrumbs'));
     }
 
     /**
