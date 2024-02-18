@@ -6,7 +6,7 @@
 <!-- css  -->
 <link rel="stylesheet" href="{{ asset('css/gestor.css') }}">
 <!-- script javascript  -->
-<script type="text/javascript" language="javascript" src="{{ asset('js/servicioFormulario.js') }}"></script>
+<script type="text/javascript" language="javascript" src="{{ asset('js/rolFormulario.js') }}"></script>
 
 
 <div class="container-fluid font">
@@ -22,9 +22,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 px-5">
-                    <h1 class="title">
-                        Alta Servicio
-                    </h1>
+                    <h1 class="title">Alta Rol</h1>
                 </div>
             </div>
             @if($errors->any())
@@ -64,6 +62,8 @@
                     </div>
                 </div>
             </div>
+
+            
             <div class="row mt-5">
                 <div class="col-12 px-5 ">
                     <div class="d-flex">
@@ -85,7 +85,7 @@
         
             <div class="row mt-4">
                 <div class="col-12 px-5">
-                    <form method="POST" action="{{ route('servicio.crear') }}">
+                    <form method="POST" action="{{ route('rol.crear') }}">
                     @csrf 
                     <div id="paso-1">
                             <div class="row mt-4  ">
@@ -95,10 +95,10 @@
                             </div>
                             <div class="row d-flex flex-column align-items-center">
                                 <div class="col-4">
-                                    <label for="nombre_servicio" class="my-3 label-personalizado">Nombre del Servicio</label>
+                                    <label for="nombre_servicio" class="my-3 label-personalizado">Nombre del Rol</label>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control input-style"  name="nombre_servicio" id="nombre_servicio" autofocus>
+                                            <input type="text" class="form-control input-style"  name="nombre_rol" id="nombre_rol" autofocus>
                                         </div>
                                     </div>
                                 </div>
@@ -124,10 +124,10 @@
                         </div>
                         <div class="row d-flex flex-column align-items-center">
                                 <div class="col-4">
-                                    <label for="nombre_servicio" class="my-3 label-personalizado">Nombre del Servicio</label>
+                                    <label for="nombre_servicio" class="my-3 label-personalizado">Nombre del Rol</label>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control input-style"   id="nombre_servicio_disabled" disabled>
+                                            <input type="text" class="form-control input-style"   id="nombre_rol_disabled" disabled>
                                         </div>
                                     </div>
                                 </div>

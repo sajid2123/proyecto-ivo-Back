@@ -48,12 +48,17 @@ Route::group(['middleware' => 'gestor'], function(){
     Route::get('/servicio', [ServicioController::class, 'index'])->name('gestor.servicio');
     Route::get('/servicio/add-servicio', [ServicioController::class, 'addServicio'])->name('gestor.add-servicio');
     Route::post('/servicio/add-servicio/anyadir', [ServicioController::class, 'store'])->name('servicio.crear');
-    Route::get('/servicio/{id}/editar', [ServicioController::class, 'edit'])->name('servicio.edit');
-    Route::get('/servicio/{id}/perfil', [ServicioController::class, 'perfil'])->name('servicio.perfil');
+    Route::post('/servicio/{id}/editar/modificar', [ServicioController::class, 'update'])->name('servicio.modificar');
+    Route::get('/servicio/{id}/editar', [ServicioController::class, 'edit'])->name('servicio.edit');;
 
 
     //Routas Rol
     Route::get('/rol', [RolController::class, 'index'])->name('gestor.rol');
+    Route::get('/rol/add-rol', [RolController::class, 'addRol'])->name('gestor.add-rol');
+    Route::post('/rol/add-rol/anyadir', [RolController::class, 'store'])->name('rol.crear');
+    Route::post('/rol/{id}/editar/modificar', [RolController::class, 'update'])->name('rol.modificar');
+    Route::get('/rol/{id}/editar', [RolController::class, 'edit'])->name('rol.edit');
+
 });
 
 
