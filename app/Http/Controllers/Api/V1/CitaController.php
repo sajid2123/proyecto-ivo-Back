@@ -14,11 +14,19 @@ class CitaController extends Controller
      */
     public function index(Request $request)
     {
-        // Obtener el ID del paciente de la solicitud HTTP
+
         $idPaciente = $request->input('id_usuario_paciente');
+        $estado = $request->input('estado');
+
 
         // Buscar todas las citas asociadas al paciente con el ID proporcionado
-        $citas = Cita::where('id_usuario_paciente', $idPaciente)->get();
+        $query = Cita::where('id_usuario_paciente', $idPaciente);
+
+        if ($estado !== null) {
+            $query->where('estado', $estado);
+        }
+
+        $citas = $query->get();
 
         // Retornar las citas como respuesta JSON
         return response()->json(['citas' => $citas], 200);
@@ -81,6 +89,7 @@ class CitaController extends Controller
      */
     public function destroy(Cita $cita)
     {
-        //
+        $cita->delete();
+        return response()->json(null, 204);
     }
 }

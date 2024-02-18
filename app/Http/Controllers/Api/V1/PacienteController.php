@@ -50,7 +50,8 @@ class PacienteController extends Controller
      */
     public function update(Request $request, Paciente $paciente)
     {
-        //
+
+
     }
 
     /**
@@ -60,4 +61,5 @@ class PacienteController extends Controller
     {
         //
     }
+
 }

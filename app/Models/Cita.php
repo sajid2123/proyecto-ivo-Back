@@ -9,6 +9,8 @@ class Cita extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_cita';
+
     protected $fillable = [
         'sip',
         'hora',

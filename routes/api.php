@@ -43,6 +43,14 @@ Route::group([
     Route::post('crear-citas', [App\Http\Controllers\Api\V1\CitaController::class, 'store']);
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
     Route::apiResource('servicios', App\Http\Controllers\Api\V1\ServicioController::class);
+    Route::delete('/api/v1/citas/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'destroy']);
+    //Route::apiResource('usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
+    Route::put('usuarios/{usuario}', [App\Http\Controllers\Api\V1\UsuarioController::class, 'update']);
+
+
+
+
+
     //Route::get('/pacientes/{id}', [App\Http\Controllers\Api\V1\PacienteController::class, 'show']);
 
 
