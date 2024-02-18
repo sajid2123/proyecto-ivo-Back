@@ -21,9 +21,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 px-5">
-                    <h1 class="title">
-                        Alta Servicio
-                    </h1>
+                    <h1 class="title">Modificar Rol</h1>
                 </div>
             </div>
             @if($errors->any())
@@ -42,10 +40,12 @@
                 </div>
                 @endisset
             @endif
+           
+           
             <div class="row mt-4">
                 <div class="col-12 px-5">
-                    <form method="POST" action="{{ route('servicio.modificar' , ['id' => $servicio->id_servicio]) }}">
-                    @csrf 
+                    <form method="POST" action="{{ route('rol.modificar' , ['id' => $rol->id_rol]) }}">
+                    @csrf  
                             <div class="row mt-4  ">
                                 <div class="col-12">
                                     <span class="titulo-fomulario-add-usuario">Introduce los datos.</span>
@@ -53,16 +53,17 @@
                             </div>
                             <div class="row d-flex flex-column align-items-center">
                                 <div class="col-4">
-                                    <label for="nombre_servicio" class="my-3 label-personalizado">Nombre del Servicio</label>
+                                    <label for="nombre_servicio" class="my-3 label-personalizado">Nombre del Rol</label>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control input-style"  name="nombre_servicio" value="{{ $servicio->nombre_servicio }}">
+                                            <input type="text" class="form-control input-style"  name="nombre_rol" id="nombre_rol" value="{{ $rol->nombre }}">
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                     <div class="row mt-5">
                         <div class="col-12 d-flex justify-content-end">
-                            <input type="submit" class="btn-pasos mx-2" value="Modificar">
+                            <input type="submit" class="btn-pasos mx-2" value="Modificar" id="confirmar">
                         </div>
                     </div>
                     </form>

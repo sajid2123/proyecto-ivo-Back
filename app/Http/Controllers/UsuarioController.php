@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use App\Models\Servicio;
 use App\Models\Rol;
 use App\Models\Medico;
+use App\Models\Gestor;
 use App\Models\Radiologo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -117,10 +118,9 @@ class UsuarioController extends Controller
             'codigoPostal' => 'required|numeric|digits:5',
             'direccion' => 'required|string|max:255',
             'fechaNac' => 'required|date',
-            'telefono' => 'required|string|max:255',
+            'telefono' => 'required|numeric|digits:9',
             'usuario' => 'required|string|max:255',
             'password' => 'required|string|min:8|confirmed',
-            'servicio'  => 'required|exists:servicios,nombre_servicio',
             'rol' => 'required|exists:rols,nombre',
         ], $messages);
 
@@ -131,7 +131,7 @@ class UsuarioController extends Controller
         }
         $validatedData = $validator->validated();
 
-        $nombreServicio = $validatedData['servicio'];
+        $nombreServicio = $request->servicio;
         $nombreRol = $validatedData['rol'];
         $rol = Rol::where('nombre', $validatedData['rol'])->first();
 
@@ -144,7 +144,7 @@ class UsuarioController extends Controller
             'apellido1' => $validatedData['apellido1'],
             'apellido2' => $validatedData['apellido2'],
             'Sexo' => $validatedData['sexo'],
-            'codigoPostal' => $validatedData['codigoPostal'],
+            'codigo_postal' => $validatedData['codigoPostal'],
             'direccion' => $validatedData['direccion'],
             'fecha_nacimiento' => $validatedData['fechaNac'],
             'telefono' => $validatedData['telefono'],
@@ -154,7 +154,7 @@ class UsuarioController extends Controller
 
         $this->anyadirUsuarioEspecifico($nombreRol, $user, $nombreServicio);
         
-        return redirect()->route('gestor.add-usuario');
+        return redirect()->route('gestor.add-usuario')->with('success', 'Usuario creado correctamente.');
         
     }
     public function anyadirUsuarioEspecifico($nombreRol, $user, $nombreServicio){
@@ -163,7 +163,7 @@ class UsuarioController extends Controller
         switch($nombreRol){
             case 'Gestor':
                 Gestor::create([
-                    'id_usuario_gestor' => $user->id,
+                    'id_usuario_gestor' => $user->id_usuario,
                 ]);
                 break;
             case 'Médico':
@@ -177,14 +177,14 @@ class UsuarioController extends Controller
             case 'Radiólogo':
                 $servicio = Servicio::where('nombre_servicio', $nombreServicio)->first();
                 Radiologo::create([
-                    'id_usuario_radiologo' => $user->id, 
+                    'id_usuario_radiologo' => $user->id_usuario, 
                     'id_usuario_gestor' => Auth::guard('usuario')->user()->id_usuario,
                     'id_servicio' =>   $servicio->id_servicio,
                 ]);
                 break;
             case 'Administrativo':
                 Administrativo::create([
-                    'id_usuario_administrativo' => $user->id, 
+                    'id_usuario_administrativo' => $user->id_usuario, 
                     'id_usuario_gestor' => Auth::guard('usuario')->user()->id_usuario,
                 ]);
                 break;

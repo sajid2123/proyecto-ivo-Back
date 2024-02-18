@@ -71,13 +71,13 @@
                                         <a href="{{ route('usuario.edit' , ['id' => $usuario->id_usuario])}}">
                                             <i class="fa-solid fa-pen-to-square mx-3 color"></i>
                                         </a>
-                                        <form action="{{ route('usuario.destroy', ['id' => $usuario->id_usuario]) }}" method="POST">
+                                        <!-- <form action="{{ route('usuario.destroy', ['id' => $usuario->id_usuario]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="color delete-btn-style">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-                                        </form>
+                                        </form> -->
                                     </td>
                                 </tr>
                             @endforeach

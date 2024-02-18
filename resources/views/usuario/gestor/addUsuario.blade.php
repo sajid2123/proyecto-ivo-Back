@@ -20,21 +20,44 @@
                     <x-breadcrumbs :breadcrumbs="$breadcrumbs" />
                 </div>
             </div>
-            @isset($errors)
-            <div class="row mt-4">
-                <div class="col-12 px-5">
-                    <h1 class="title">Alta Usuario</h1>
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    
+            @if($errors->any())
+                @isset($errors)
+                <div class="row mt-4">
+                    <div class="col-12 px-5">
+                        <h1 class="title">Alta Usuario</h1>
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        
+                    </div>
+                </div>
+                @endisset
+            @endif
+            @if(session('success'))
+                <div class="modal-backdrop fade show"></div>
+            @endif
+        
+            <div class="modal fade  mt-5 {{ session('success') ? ' show d-block' : '' }}" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-modal="true" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                    <div class="modal-header-personalizado modal-style">
+                        <i class="fa-solid fa-circle-check modal-icon"></i>
+                    </div>
+                    <div class="modal-body  modal-style">
+                        @if(session('success'))
+                        <p>{{ session('success') }}</p>
+                        @endif
+                    </div>
+                    <div class="modal-footer-personalizado modal-style">
+                        <a href="{{ route('gestor.add-usuario')}}">Cerrar</a>
+                    </div>
+                    </div>
                 </div>
             </div>
-            @endisset
             <div class="row mt-5">
                 <div class="col-12 px-5 ">
                     <div class="d-flex">

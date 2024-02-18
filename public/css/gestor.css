@@ -106,3 +106,55 @@
 .btn-add-servicio:hover{
     color: white;
 }
+.btn-add-rol{
+    display: flex;
+    align-items: center;
+    background-color: #092C4C;
+    color: white;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn-add-rol:hover{
+    color: white;
+}
+.modal-icon{
+    color: green;
+    font-size: 50px;
+}
+.modal-style{
+    background-color: #DCECFB;
+}
+.modal-personalizado{
+    display: flex;
+    align-items: center;
+}
+.modal-footer-personalizado{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 0px 0px 10px 10px;
+}
+.modal-footer-personalizado a{
+    background-color: #092C4C;
+    color: white;
+    padding: 5px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.modal-footer-personalizado a{
+    color: white;
+}
+.modal-body{
+    display: flex;
+    justify-content: center;
+}
+.modal-body p{
+    font-size: 25px;
+    font-weight: bold;
+}
+.modal-header-personalizado{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}

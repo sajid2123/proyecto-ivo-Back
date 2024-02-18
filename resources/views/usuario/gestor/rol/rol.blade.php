@@ -24,7 +24,28 @@
             </div>
             <div class="row mt-3">
                 <div class="col-12 d-flex justify-content-end">
-                    <a href="" class="btn-add-user">Add Servicio</a>
+                    <a href="{{ route('gestor.add-rol')}}" class="btn-add-rol">Add Rol</a>
+                </div>
+            </div>
+            @if(session('success'))
+                <div class="modal-backdrop fade show"></div>
+            @endif
+        
+            <div class="modal fade  mt-5 {{ session('success') ? ' show d-block' : '' }}" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-modal="true" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                    <div class="modal-header-personalizado modal-style">
+                        <i class="fa-solid fa-circle-check modal-icon"></i>
+                    </div>
+                    <div class="modal-body  modal-style">
+                        @if(session('success'))
+                        <p>{{ session('success') }}</p>
+                        @endif
+                    </div>
+                    <div class="modal-footer-personalizado modal-style">
+                        <a href="{{ route('gestor.rol')}}">Cerrar</a>
+                    </div>
+                    </div>
                 </div>
             </div>
             <div class="row mt-5">
@@ -43,19 +64,16 @@
                                     <td>{{ $rol->nombre }}</td>
                                     <td>{{ $rol->fecha_creacion }}</td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="{{ route('usuario.perfil' , ['id' => $rol->id_rol])}}">
-                                            <i class="fa-solid fa-eye color"></i>
-                                        </a>
-                                        <a href="{{ route('usuario.edit' , ['id' => $rol->id_rol])}}">
+                                        <a href="{{ route('rol.edit' , ['id' => $rol->id_rol])}}">
                                             <i class="fa-solid fa-pen-to-square mx-3 color"></i>
                                         </a>
-                                        <form action="{{ route('usuario.destroy', ['id' => $rol->id_rol]) }}" method="POST">
+                                        <!-- <form action="{{ route('usuario.destroy', ['id' => $rol->id_rol]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="color delete-btn-style">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-                                        </form>
+                                        </form> -->
                                     </td>
                                 </tr>
                             @endforeach
