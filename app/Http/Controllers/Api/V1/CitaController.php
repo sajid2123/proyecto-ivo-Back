@@ -124,6 +124,8 @@ class CitaController extends Controller
 
     public function getCitasRadiologo(String $fecha, int $id_radiologo){
 
+    }
+
     public function getCitasPendientesRadiologo(String $fecha, int $id_radiologo){
 
 
