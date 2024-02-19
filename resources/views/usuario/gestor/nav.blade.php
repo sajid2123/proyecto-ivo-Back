@@ -20,7 +20,7 @@
                             <li class="nav-item pointer">
                                 <a class="nav-link  px-3  {{ request()->is('usuario', 'usuario/*') ? 'nav-active' : 'nav-opcion' }}" href="{{route('gestor.usuario')}}">
                                     <i class="fa-solid fa-user mx-2"></i>
-                                    Usaurio
+                                    Usuario
                                 </a>
                             </li>
                             <li class="nav-item mt-3 pointer">

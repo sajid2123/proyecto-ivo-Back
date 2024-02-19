@@ -92,4 +92,10 @@ class CitaController extends Controller
         $cita->delete();
         return response()->json(null, 204);
     }
+    public function getCitasRadiologo(String $fecha, int $id_radiologo){
+
+        $citas = Cita::where('id_usuario_paciente', $idPaciente);
+
+        return response()->json(['citas' => $citas]);
+    }
 }
