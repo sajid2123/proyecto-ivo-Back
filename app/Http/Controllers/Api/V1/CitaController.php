@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cita;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use App\Http\Resources\V1\CitaRadiologoResource;
 
 class CitaController extends Controller
 {
@@ -123,8 +124,35 @@ class CitaController extends Controller
 
     public function getCitasRadiologo(String $fecha, int $id_radiologo){
 
-        $citas = Cita::where('id_usuario_paciente', $idPaciente);
+    public function getCitasPendientesRadiologo(String $fecha, int $id_radiologo){
+
+
+        $citas = CitaRadiologoResource::collection(Cita::where([
+                                                    ['id_usuario_radiologo', '=', $id_radiologo],
+                                                    ['fecha', '=', $fecha],
+                                                    ['estado', 'like', '%pendiente%']
+                                                    ])->get());
+        // $citas = Cita::where([
+        //                     ['id_usuario_radiologo', '=', $id_radiologo],
+        //                     ['fecha', '=', $fecha],
+        //                     ['estado', 'like', '%pendiente%']
+        //                     ])->get();
+
 
         return response()->json(['citas' => $citas]);
+    }
+    public function getCitasRealizadaRadiologo(String $fecha, int $id_radiologo){
+        // $citas = Cita::where([
+        //                     ['id_usuario_radiologo', '=', $id_radiologo],
+        //                     ['fecha', '=', $fecha],
+        //                     ['estado', 'like', '%realizada%']
+        //                     ])->get();
+        $citas = CitaRadiologoResource::collection(Cita::where([
+                                                    ['id_usuario_radiologo', '=', $id_radiologo],
+                                                    ['fecha', '=', $fecha],
+                                                    ['estado', 'like', '%realizada%']
+                                                    ])->get());
+
+        return response()->json(['citas' => $citas], 200);
     }
 }
