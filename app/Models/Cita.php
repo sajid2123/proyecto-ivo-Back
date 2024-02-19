@@ -21,6 +21,7 @@ class Cita extends Model
         'id_usuario_administrativo',
     ];
 
+
     public function medicos(){
         return $this->belongsTo(Medico::class);
     }

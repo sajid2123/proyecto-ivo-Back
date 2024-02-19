@@ -19,7 +19,7 @@ class CitaController extends Controller
         $estado = $request->input('estado');
 
 
-        // Buscar todas las citas asociadas al paciente con el ID proporcionado
+        //Buscar todas las citas asociadas al paciente
         $query = Cita::where('id_usuario_paciente', $idPaciente);
 
         if ($estado !== null) {
@@ -28,7 +28,7 @@ class CitaController extends Controller
 
         $citas = $query->get();
 
-        // Retornar las citas como respuesta JSON
+        //Devolver las citas como  JSON
         return response()->json(['citas' => $citas], 200);
     }
 
@@ -46,10 +46,10 @@ class CitaController extends Controller
         'id_usuario_medico' => '',
         'id_usuario_administrativo' => 'required',
         'id_usuario_radiologo' => ''
-        // Agrega aquí las validaciones necesarias para los demás campos de la cita
+
     ]);
 
-    // Crear una nueva instancia de Cita con los datos de la solicitud
+    // Crear una nueva instancia de cita
     $cita = new Cita();
     $cita->id_usuario_paciente = $request->input('id_usuario_paciente');
     $cita->hora = $request->input('hora');
@@ -58,12 +58,10 @@ class CitaController extends Controller
     $cita->id_usuario_medico = $request->input('id_usuario_medico');
     $cita->id_usuario_administrativo = $request->input('id_usuario_administrativo');
     $cita->id_usuario_radiologo = $request->input('id_usuario_radiologo');
-    // Agrega aquí la asignación de los demás campos de la cita
 
-    // Guardar la cita en la base de datos
+
+    // Guardar la cita
     $cita->save();
-
-    // Retornar una respuesta de éxito
     return response()->json(['message' => 'Cita creada correctamente'], 201);
 }
 
@@ -81,7 +79,37 @@ class CitaController extends Controller
      */
     public function update(Request $request, Cita $cita)
     {
-        //
+        // Validar los datos recibidos en la solicitud
+        $request->validate([
+            'id_servicio' => 'nullable|integer',
+            'id_usuario_medico' => 'nullable|integer',
+            'hora' => 'nullable|string',
+            'fecha' => 'nullable|date',
+        ]);
+
+        // Actualizar los campos de la cita
+        if ($request->filled('id_servicio')) {
+            $cita->id_servicio = $request->id_servicio;
+        }
+
+        if ($request->filled('id_usuario_medico')) {
+            $cita->id_usuario_medico = $request->id_usuario_medico;
+        }
+
+        if ($request->filled('hora')) {
+            $cita->hora = $request->hora;
+        }
+
+        if ($request->filled('fecha')) {
+            $cita->fecha = $request->fecha;
+        }
+
+        // Guardar los cambios en la base de datos
+        $cita->save();
+
+        // Devolver una respuesta exitosa
+        return response()->json(['message' => 'Cita actualizada exitosamente'], 200);
+
     }
 
     /**
@@ -92,6 +120,7 @@ class CitaController extends Controller
         $cita->delete();
         return response()->json(null, 204);
     }
+
     public function getCitasRadiologo(String $fecha, int $id_radiologo){
 
         $citas = Cita::where('id_usuario_paciente', $idPaciente);
