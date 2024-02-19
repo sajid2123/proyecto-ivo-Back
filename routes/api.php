@@ -46,6 +46,8 @@ Route::group([
     Route::delete('/api/v1/citas/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'destroy']);
     //Route::apiResource('usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
     Route::put('usuarios/{usuario}', [App\Http\Controllers\Api\V1\UsuarioController::class, 'update']);
+    Route::get('citas/{fecha}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMedico']);
+
 
 
 
