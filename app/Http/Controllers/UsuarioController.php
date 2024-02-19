@@ -56,8 +56,9 @@ class UsuarioController extends Controller
         $rols = Rol::all();
         return view('usuario.gestor.addUsuario', compact('breadcrumbs', 'servicios', 'rols'));
     }
-g     * Show the form for creating a new resource.
-     */
+    /** 
+    * Show the form for creating a new resource.
+    */
     public function create()
     {
         //
