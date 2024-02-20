@@ -23,7 +23,38 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dni' => 'required',
+            'nombre' => 'required',
+            'apellido1'=>'required',
+            'apellido2' => 'required',
+            'Sexo' => 'required',
+            'fecha_nacimiento' => 'required',
+            'correo' => 'required',
+            'codigo_postal' => 'required',
+            'direccion' => 'required',
+            'nombre_cuenta' => 'required',
+            'password' => 'required',
+            'id_rol' => 'required',
+        ]);
+
+        $usuario = new Usuario();
+
+        $usuario -> dni = $request -> input('dni');
+        $usuario -> nombre = $request -> input('nombre');
+        $usuario -> apellido1 = $request -> input('apellido1');
+        $usuario -> apellido2 = $request -> input('apellido2');
+        $usuario -> Sexo = $request -> input('Sexo');
+        $usuario -> fecha_nacimiento = $request -> input('fecha_nacimiento');
+        $usuario -> correo = $request -> input('correo');
+        $usuario -> codigo_postal = $request -> input('codigo_postal');
+        $usuario -> direccion = $request -> input('direccion');
+        $usuario -> nombre_cuenta = $request -> input('nombre_cuenta');
+        $usuario -> password = $request -> input('password');
+        $usuario -> id_rol = $request -> input('id_rol');    
+
+        $usuario->save();
+        return response()->json(['message' => 'Usuario correctamente'], 201);
     }
 
     /**
