@@ -40,7 +40,7 @@ Route::group([
 
     Route::apiResource('pacientes', App\Http\Controllers\Api\V1\PacienteController::class);
     Route::apiResource('citas', App\Http\Controllers\Api\V1\CitaController::class);
-    Route::post('crear-citas', [App\Http\Controllers\Api\V1\CitaController::class, 'store']);
+        
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
     Route::apiResource('servicios', App\Http\Controllers\Api\V1\ServicioController::class);
     Route::delete('/api/v1/citas/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'destroy']);
@@ -48,6 +48,7 @@ Route::group([
     Route::put('usuarios/{usuario}', [App\Http\Controllers\Api\V1\UsuarioController::class, 'update']);
     Route::get('citas-pendiente/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesRadiologo']);
     Route::get('citas-realizada/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadaRadiologo']);
+    Route::post('crear-prueba', [App\Http\Controllers\Api\V1\PruebaController::class, 'store']);
 
 
 
