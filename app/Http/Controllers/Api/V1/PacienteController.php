@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use App\Models\Usuario;
 
 class PacienteController extends Controller
 {
@@ -29,8 +30,19 @@ class PacienteController extends Controller
     public function store(Request $request)
     {
         
-        
+        $paciente = new Paciente();
 
+        $user = Usuario::where('dni', $request -> input('dni_paciente'))->first(); // Busca al paciente por su DNI
+
+        // Aqui estamos sacando los datos de request
+
+        $paciente->id_usuario_paciente = $user -> id_usuario;
+        $paciente->id_usuario_administrativo = $request -> input('id_admin');
+        $paciente->sip = $request -> input('sip');
+
+        $paciente -> save();
+
+        return response()->json(['message' => 'Paciente registrado exitosamente'], 201);
     }
 
     /**

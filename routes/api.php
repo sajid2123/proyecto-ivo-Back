@@ -41,10 +41,12 @@ Route::group([
     Route::apiResource('pacientes', App\Http\Controllers\Api\V1\PacienteController::class);
     Route::apiResource('citas', App\Http\Controllers\Api\V1\CitaController::class);
 
-        
+    Route::apiResource('citas-generales', App\Http\Controllers\Api\V1\CitaController::class);
 
     Route::post('crear-citas', [App\Http\Controllers\Api\V1\CitaController::class, 'store']);
     Route::post('alta-paciente', [App\Http\Controllers\Api\V1\UsuarioController::class, 'store']);
+
+    Route::post('registrar-paciente', [App\Http\Controllers\Api\V1\PacienteController::class, 'store']);
 
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
     Route::apiResource('servicios', App\Http\Controllers\Api\V1\ServicioController::class);
