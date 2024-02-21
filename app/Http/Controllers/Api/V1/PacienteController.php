@@ -19,8 +19,6 @@ class PacienteController extends Controller
         // Lógica para recuperar pacientes según el ID del administrativo
         $pacientes = Paciente::with('usuario')->where('id_usuario_administrativo', $idUsuarioAdministrativo)->get();
 
-
-
         return response()->json(['pacientes' => $pacientes], 200);
     }
 

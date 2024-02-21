@@ -19,6 +19,7 @@ class Cita extends Model
         'id_usuario_paciente',
         'id_usuario_radiologo',
         'id_usuario_administrativo',
+        'estado',
     ];
 
 

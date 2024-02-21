@@ -156,15 +156,13 @@ class CitaController extends Controller
         //                     ['estado', 'like', '%pendiente%']
         //                     ])->get();
 
+    
+        
 
         return response()->json(['citas' => $citas]);
     }
     public function getCitasRealizadaRadiologo(String $fecha, int $id_radiologo){
-        // $citas = Cita::where([
-        //                     ['id_usuario_radiologo', '=', $id_radiologo],
-        //                     ['fecha', '=', $fecha],
-        //                     ['estado', 'like', '%realizada%']
-        //                     ])->get();
+     
         $citas = CitaRadiologoResource::collection(Cita::where([
                                                     ['id_usuario_radiologo', '=', $id_radiologo],
                                                     ['fecha', '=', $fecha],

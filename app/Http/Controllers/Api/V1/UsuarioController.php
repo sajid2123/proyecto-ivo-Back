@@ -7,6 +7,7 @@ use App\Http\Resources\V1\UsuarioResource;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
+
 class UsuarioController extends Controller
 {
     /**
