@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CitaAdministrativoResource;
+use App\Http\Resources\V1\CitaMedicoResource;
 use App\Models\Cita;
 use App\Models\Servicio;
 use App\Models\Usuario;
@@ -177,4 +178,29 @@ class CitaController extends Controller
 
         return response()->json(['citas' => $citas], 200);
     }
+
+    public function getCitasPendientesMedico(String $fecha, int $id_medico){
+
+        $citas = CitaMedicoResource::collection(Cita::where([
+                                                    ['id_usuario_medico', '=', $id_medico],
+                                                    ['fecha', '=', $fecha],
+                                                    ['estado', '=', 'pendiente']
+                                                    ])->get());
+
+        return response()->json($citas, 200);
+
+    }
+
+    public function getCitasRealizadasMedico(String $fecha, int $id_medico){
+
+        $citas = CitaMedicoResource::collection(Cita::where([
+                                                    ['id_usuario_medico', '=', $id_medico],
+                                                    ['fecha', '=', $fecha],
+                                                    ['estado', '=', 'realizada']
+                                                    ])->get());
+
+        return response()->json($citas, 200);
+
+    }
+
 }

@@ -56,8 +56,16 @@ Route::group([
     //Route::apiResource('usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
     Route::put('usuarios/{usuario}', [App\Http\Controllers\Api\V1\UsuarioController::class, 'update']);
 
+
     Route::put('citas/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'update']);
     Route::get('citas/{fecha}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMedico']);
+
+    Route::put('usuarios/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'update']);
+   // Route::get('citas/{fecha}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMedico']);
+
+    Route::get('citas-pendiente/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesMedico']);
+    Route::get('citas-realizada/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadasMedico']);
+
 
     Route::get('citas-pendiente/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesRadiologo']);
     Route::get('citas-realizada/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadaRadiologo']);
