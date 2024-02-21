@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CitaAdministrativoResource;
 use App\Models\Cita;
+use App\Models\Servicio;
+use App\Models\Usuario;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\CitaRadiologoResource;
@@ -16,23 +18,25 @@ class CitaController extends Controller
      */
     public function index(Request $request)
     {
-
         $idPaciente = $request->input('id_usuario_paciente');
         $estado = $request->input('estado');
 
+        // Obtener todas las citas asociadas al paciente
+        $citas = Cita::where('id_usuario_paciente', $idPaciente)->get();
 
-        //Buscar todas las citas asociadas al paciente
-        $query = Cita::where('id_usuario_paciente', $idPaciente);
+        // Iterar sobre cada cita y cargar los datos del médico asociado
+        foreach ($citas as $cita) {
+            $medico = Usuario::find($cita->id_usuario_medico); // Suponiendo que los médicos están almacenados en la tabla 'usuarios'
+            $cita->nombre_medico = $medico ? $medico->nombre : null;
 
-        if ($estado !== null) {
-            $query->where('estado', $estado);
+            $servicio = Servicio::find($cita->id_servicio); // Suponiendo que los servicios están almacenados en la tabla 'servicios'
+            $cita->nombre_servicio = $servicio ? $servicio->nombre_servicio : null;
         }
 
-        $citas = $query->get();
-
-        //Devolver las citas como  JSON
+        // Devolver las citas como JSON
         return response()->json(['citas' => $citas], 200);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,6 +47,7 @@ class CitaController extends Controller
     $request->validate([
         'id_usuario_paciente' => 'required|exists:pacientes,id_usuario_paciente',
         'hora' => 'required',
+        'fecha' => 'required',
         'sip'=>'required',
         'id_servicio' => 'required',
         'id_usuario_medico' => '',
@@ -55,6 +60,7 @@ class CitaController extends Controller
     $cita = new Cita();
     $cita->id_usuario_paciente = $request->input('id_usuario_paciente');
     $cita->hora = $request->input('hora');
+    $cita->fecha = $request->input('fecha');
     $cita->sip = $request->input('sip');
     $cita->id_servicio = $request->input('id_servicio');
     $cita->id_usuario_medico = $request->input('id_usuario_medico');

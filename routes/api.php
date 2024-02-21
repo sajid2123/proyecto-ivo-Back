@@ -49,12 +49,14 @@ Route::group([
     Route::post('registrar-paciente', [App\Http\Controllers\Api\V1\PacienteController::class, 'store']);
 
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
+    Route::get('medicos/{id_usuario_medico}', [App\Http\Controllers\Api\V1\MedicoController::class, 'listarPorId']);
+
     Route::apiResource('servicios', App\Http\Controllers\Api\V1\ServicioController::class);
     Route::delete('/api/v1/citas/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'destroy']);
     //Route::apiResource('usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
     Route::put('usuarios/{usuario}', [App\Http\Controllers\Api\V1\UsuarioController::class, 'update']);
 
-    Route::put('usuarios/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'update']);
+    Route::put('citas/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'update']);
     Route::get('citas/{fecha}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMedico']);
 
     Route::get('citas-pendiente/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesRadiologo']);
