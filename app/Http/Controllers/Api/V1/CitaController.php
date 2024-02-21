@@ -136,10 +136,11 @@ class CitaController extends Controller
        $citas = CitaAdministrativoResource::collection(Cita::where([
                                             ['estado', '=', 'pendiente'],
                                             ['fecha', '>=', $fechaActual],
-                                            ]) -> get());
+                                            ]) -> skip(0) -> take(10) -> get());
 
-       return response()->json(['citas' => $citas], 200);
+       return response()->json($citas, 200);
     }
+
 
     public function getCitasPendientesRadiologo(String $fecha, int $id_radiologo){
 
