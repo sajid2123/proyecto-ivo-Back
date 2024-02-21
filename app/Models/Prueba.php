@@ -11,11 +11,11 @@ class Prueba extends Model
 
     protected $fillable = [
         'informe',
-        'imagen',
         'fecha',
         'id_usuario_medico',
         'id_usuario_paciente',
         'id_usuario_radiologo',
+        'id_cita',
     ];
 
     public function pacientes(){

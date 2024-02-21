@@ -19,6 +19,7 @@ class CitaRadiologoResource extends JsonResource
 
 
         return [
+            'id_cita' => $this->id_cita,
             'sip' => $this->sip,
             'hora' => $this->hora,
             'id_paciente' => $this->id_usuario_paciente,
