@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\CitaAdministrativoResource;
 use App\Models\Cita;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
@@ -124,6 +125,20 @@ class CitaController extends Controller
 
     public function getCitasRadiologo(String $fecha, int $id_radiologo){
 
+    }
+
+    public function getCitasMasRecientes(){
+
+        $citas = new Cita();
+
+        $fechaActual = date("Y-m-d");
+
+       $citas = CitaAdministrativoResource::collection(Cita::where([
+                                            ['estado', '=', 'pendiente'],
+                                            ['fecha', '>=', $fechaActual],
+                                            ]) -> get());
+
+       return response()->json(['citas' => $citas], 200);
     }
 
     public function getCitasPendientesRadiologo(String $fecha, int $id_radiologo){
