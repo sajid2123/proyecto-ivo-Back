@@ -68,6 +68,7 @@ Route::group([
     Route::get('citas-pendiente-medico/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesMedico']);
     Route::get('citas-realizada-medico/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadasMedico']);
 
+    Route::get('prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'getPrueba']);
 
     Route::get('citas-pendiente-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesRadiologo']);
     Route::get('citas-realizada-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadaRadiologo']);

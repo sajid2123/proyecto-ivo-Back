@@ -9,6 +9,7 @@ use App\Models\Imagen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class PruebaController extends Controller
 {
@@ -89,26 +90,28 @@ class PruebaController extends Controller
 
         $prueba = Prueba::where('id_cita', $id)->first();
 
-    // Verificar si se encontró la prueba
-    if (!$prueba) {
-        return response()->json(['error' => 'Prueba no encontrada.'], 404);
-    }
-
-    // Recuperar las imágenes asociadas a la prueba
-    $imagenes = Imagen::where('id_prueba', $prueba->id)->get();
-
-        // Convertir las rutas de las imágenes a base64
+    
+        if (!$prueba) {
+            return response()->json(['error' => 'Prueba no encontrada.'], 404);
+        }
+        $imagenes = Imagen::where('id_prueba', $prueba->id_prueba)->get();
         $imagenesBase64 = $imagenes->map(function ($imagen) {
-            $ruta = storage_path('app/' . $imagen->ruta); // Asegúrate de que esta ruta sea correcta
+            $ruta = Storage::disk('public')->path($imagen->imagen);
+            
             if (File::exists($ruta)) {
+                
                 $tipo = File::mimeType($ruta);
                 $archivo = File::get($ruta);
-                return 'data:' . $tipo . ';base64,' . base64_encode($archivo);
+                $base64Image = 'data:' . $tipo . ';base64,' . base64_encode($archivo);
+
+                return [
+                    'nombre' => basename($imagen->imagen),
+                    'base64' => $base64Image
+                ];
             }
-            return null; // O manejar el error como prefieras
+            return null;
         });
 
-        // Devolver el informe de la prueba y las imágenes en base64
         return response()->json([
             'informe' => $prueba->informe,
             'imagenes' => $imagenesBase64
