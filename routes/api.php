@@ -48,6 +48,8 @@ Route::group([
 
     Route::post('registrar-paciente', [App\Http\Controllers\Api\V1\PacienteController::class, 'store']);
 
+    Route::post('registrar-diagnostico', [App\Http\Controllers\Api\V1\DiagnosticoController::class, 'store']);
+
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
     Route::get('medicos/{id_usuario_medico}', [App\Http\Controllers\Api\V1\MedicoController::class, 'listarPorId']);
 
@@ -63,8 +65,8 @@ Route::group([
     Route::put('usuarios/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'update']);
    // Route::get('citas/{fecha}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMedico']);
 
-    Route::get('citas-pendiente/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesMedico']);
-    Route::get('citas-realizada/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadasMedico']);
+    Route::get('citas-pendiente-medico/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesMedico']);
+    Route::get('citas-realizada-medico/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadasMedico']);
 
 
     Route::get('citas-pendiente-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesRadiologo']);

@@ -15,7 +15,8 @@ class Paciente extends Usuario
 
     protected $fillable = [
         'id_usuario_paciente',
-        'id_usuario_administrativo'
+        'id_usuario_administrativo',
+        'sip',
     ];
 
     public function usuario()
