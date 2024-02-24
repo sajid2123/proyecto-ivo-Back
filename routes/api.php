@@ -74,8 +74,9 @@ Route::group([
     Route::get('citas-realizada-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadaRadiologo']);
     Route::post('crear-prueba', [App\Http\Controllers\Api\V1\PruebaController::class, 'store']);
     Route::get('citas-generales', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMasRecientes']);
+    Route::delete('imagen/{id}', [App\Http\Controllers\Api\V1\ImagenController::class, 'eliminarImagen']);
+    Route::put('actualizar-prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'actualizarPrueba']);
 
-    //Route::get('/pacientes/{id}', [App\Http\Controllers\Api\V1\PacienteController::class, 'show']);
 });
 
 

@@ -106,7 +106,8 @@ class PruebaController extends Controller
 
                 return [
                     'nombre' => basename($imagen->imagen),
-                    'base64' => $base64Image
+                    'id_imagen' => $imagen->id_imagen,
+                    'base64' => $base64Image,    
                 ];
             }
             return null;
@@ -114,31 +115,41 @@ class PruebaController extends Controller
 
         return response()->json([
             'informe' => $prueba->informe,
-            'imagenes' => $imagenesBase64
+            'imagenes' => $imagenesBase64,
+            'id_prueba' => $prueba->id_prueba,
         ]);
     }
+    
+    public function actualizarPrueba(Request $request, $id_prueba){
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Prueba $prueba)
-    {
-        //
+        $prueba = Prueba::find($id_prueba);
+        $prueba->update([
+            'informe' => $validatedData['informe'],
+            'fecha' => $validatedData['fecha'],
+            'id_usuario_radiologo' => $validatedData['id_radiologo'],
+            'id_usuario_paciente' => $validatedData['id_paciente'],
+            'id_cita' => $validatedData['id_cita'],
+        ]);
+       
+        
+        if ($request->has('imagesCode') && $request->has('imagesName')){
+            foreach ($request->imagesCode as $index => $image) {
+          
+                $image_parts = explode(";base64,", $image);
+                $decodedImage = base64_decode($image_parts[1]);
+
+                $filename = $request->imagesName[$index];
+                Storage::disk('public')->put('imagenes/' . $filename, $decodedImage);
+
+                $url = 'imagenes/' . $filename;
+
+                Imagen::create([
+                    'id_prueba' => $prueba->id,
+                    'imagen' => $url,
+                ]);
+            }
+        }
+        return response()->json(['message' => 'Informacion insertada correctamente .']); 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Prueba $prueba)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Prueba $prueba)
-    {
-        //
-    }
 }
