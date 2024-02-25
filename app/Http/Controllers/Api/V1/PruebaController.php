@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
+use App\Http\Resources\V1\PruebaResource;
 
 class PruebaController extends Controller
 {
@@ -75,7 +76,7 @@ class PruebaController extends Controller
                 ]);
             }
         }
-        
+
         $id_cita = $validatedData['id_cita'];
         $cita = Cita::find($id_cita);
 
@@ -120,6 +121,37 @@ class PruebaController extends Controller
             'id_prueba' => $prueba->id_prueba,
         ]);
     }
+    public function getPruebaByPruebaId($id){
+
+        $prueba = Prueba::find($id);
+
+    
+        if (!$prueba) {
+            return response()->json(['error' => 'Prueba no encontrada.'], 404);
+        }
+        $imagenes = Imagen::where('id_prueba', $prueba->id_prueba)->get();
+        $imagenesBase64 = $imagenes->map(function ($imagen) {
+            $ruta = Storage::disk('public')->path($imagen->imagen);
+            
+            if (File::exists($ruta)) {
+                
+                $tipo = File::mimeType($ruta);
+                $archivo = File::get($ruta);
+                $base64Image = 'data:' . $tipo . ';base64,' . base64_encode($archivo);
+
+                return [
+                    'nombre' => basename($imagen->imagen),
+                    'base64' => $base64Image,    
+                ];
+            }
+            return null;
+        });
+
+        return response()->json([
+            'informe' => $prueba->informe,
+            'imagenes' => $imagenesBase64,
+        ]);
+    }
     
     public function actualizarPrueba(Request $request, $id_prueba){
       
@@ -150,7 +182,14 @@ class PruebaController extends Controller
                 ]);
             }
         }
-        return response()->json(['message' => 'Informacion insertada correctamente .']); 
+        return response()->json(['message' => 'Informacion modificada correctamente .']); 
+    }
+    public function getAllPruebasPaciente($id_paciente){
+
+       
+        $pruebas =  PruebaResource::collection(Prueba::where('id_usuario_paciente' , $id_paciente)->get());
+
+        return $pruebas;
     }
 
 }
