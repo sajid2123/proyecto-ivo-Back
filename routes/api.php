@@ -49,6 +49,7 @@ Route::group([
     Route::post('registrar-paciente', [App\Http\Controllers\Api\V1\PacienteController::class, 'store']);
 
     Route::post('registrar-diagnostico', [App\Http\Controllers\Api\V1\DiagnosticoController::class, 'store']);
+    Route::get('obtener-diagnostico/{id_cita}', [App\Http\Controllers\Api\V1\DiagnosticoController::class, 'mostrarDiagnostico']);
 
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
     Route::get('medicos/{id_usuario_medico}', [App\Http\Controllers\Api\V1\MedicoController::class, 'listarPorId']);
@@ -69,6 +70,8 @@ Route::group([
     Route::get('citas-realizada-medico/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadasMedico']);
 
     Route::get('prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'getPrueba']);
+
+    
 
     Route::get('citas-pendiente-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesRadiologo']);
     Route::get('citas-realizada-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadaRadiologo']);

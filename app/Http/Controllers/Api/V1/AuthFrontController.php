@@ -30,7 +30,7 @@ class AuthFrontController extends Controller
         ];
 
         $token = auth()->claims($customClaims)->attempt($credentials);
-
+                             
         return response()->json([
             'token' => $token,
             'user' => $user // Devolver todos los datos del usuario

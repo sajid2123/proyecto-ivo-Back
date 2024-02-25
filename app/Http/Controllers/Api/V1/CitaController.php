@@ -180,12 +180,13 @@ class CitaController extends Controller
     }
 
     public function getCitasPendientesMedico(String $fecha, int $id_medico){
-
+       
         $citas = CitaMedicoResource::collection(Cita::where([
                                                     ['id_usuario_medico', '=', $id_medico],
                                                     ['fecha', '=', $fecha],
                                                     ['estado', '=', 'pendiente']
                                                     ])->get());
+
 
         return response()->json($citas, 200);
 
@@ -198,6 +199,8 @@ class CitaController extends Controller
                                                     ['fecha', '=', $fecha],
                                                     ['estado', '=', 'realizada']
                                                     ])->get());
+
+        
 
         return response()->json($citas, 200);
 
