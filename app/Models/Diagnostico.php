@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Diagnostico extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'id_diagnostico';
     protected $fillable = [
         'informe',
         'tratamiento',
@@ -24,6 +24,10 @@ class Diagnostico extends Model
 
     public function pacientes(){
         return $this->belongsTo(Paciente::class);
+    }
+
+    public function id_cita(){
+        return $this->belongsTo(Cita::class);
     }
 
 }

@@ -77,9 +77,23 @@ class DiagnosticoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Diagnostico $diagnostico)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'informe' => 'required',
+            'tratamiento' => 'required',
+           
+        ]);
+
+        $diagnostico = Diagnostico::where('id_cita', $id) -> first();
+        
+        $diagnostico->update([
+            'informe' => $request-> input('informe'),
+            'tratamiento' => $request-> input('tratamiento'),
+        ]);
+        
+        return response()->json(['message' =>  $diagnostico], 200);
+        
     }
 
     /**
