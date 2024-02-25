@@ -24,7 +24,8 @@ class CitaMedicoResource extends JsonResource
             'apellido' => $paciente->apellido1 . " " . $paciente->apellido2,
             'hora' => $this->hora,
             'id_cita' => $this->id_cita,
-            'estado' => $this->estado
+            'estado' => $this->estado,
+            'id_paciente' => $paciente->id_usuario,
         ];
     }
 }

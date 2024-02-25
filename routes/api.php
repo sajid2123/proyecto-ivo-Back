@@ -72,6 +72,8 @@ Route::group([
     Route::get('citas-realizada-medico/{fecha}/{id_medico}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadasMedico']);
 
     Route::get('prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'getPrueba']);
+    Route::get('pruebas-paciente/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'getAllPruebasPaciente']);
+    Route::get('informacion-prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'getPruebaByPruebaId']);
 
     
 
