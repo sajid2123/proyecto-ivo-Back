@@ -70,11 +70,12 @@ class PruebaController extends Controller
                 $url = 'imagenes/' . $filename;
 
                 Imagen::create([
-                    'id_prueba' => $prueba->id,
+                    'id_prueba' => $prueba->id_prueba,
                     'imagen' => $url,
                 ]);
             }
         }
+        
         $id_cita = $validatedData['id_cita'];
         $cita = Cita::find($id_cita);
 
@@ -121,14 +122,14 @@ class PruebaController extends Controller
     }
     
     public function actualizarPrueba(Request $request, $id_prueba){
-
+      
         $prueba = Prueba::find($id_prueba);
         $prueba->update([
-            'informe' => $validatedData['informe'],
-            'fecha' => $validatedData['fecha'],
-            'id_usuario_radiologo' => $validatedData['id_radiologo'],
-            'id_usuario_paciente' => $validatedData['id_paciente'],
-            'id_cita' => $validatedData['id_cita'],
+            'informe' =>  $request->input('informe'),
+            'fecha' =>  $request->input('fecha'),
+            'id_usuario_radiologo' => $request->input('id_radiologo'),
+            'id_usuario_paciente' => $request->input('id_paciente'),
+            'id_cita' =>  $request->input('id_cita'),
         ]);
        
         
@@ -144,7 +145,7 @@ class PruebaController extends Controller
                 $url = 'imagenes/' . $filename;
 
                 Imagen::create([
-                    'id_prueba' => $prueba->id,
+                    'id_prueba' => $prueba->id_prueba,
                     'imagen' => $url,
                 ]);
             }
