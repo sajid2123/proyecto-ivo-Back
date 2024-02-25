@@ -96,6 +96,39 @@ class DiagnosticoController extends Controller
         
     }
 
+    public function mostrarVolante($idCita){
+        $diagnostico = new Diagnostico();
+
+        $diagnostico = Diagnostico::where('id_cita', $idCita) -> first();
+
+        $volante = '';
+
+        if($diagnostico != null){
+            if($diagnostico -> volante != null){
+                $volante = $diagnostico -> volante;
+            }
+        }
+
+        return response()->json($volante, 201);
+    }
+
+    public function actualizarVolante(Request $request, $id)
+    {
+        $request->validate([
+            'volante' => 'required',
+        ]);
+
+        $diagnostico = Diagnostico::where('id_cita', $id) -> first();
+        
+        $diagnostico->update([
+            'volante' => $request-> input('volante'),
+        ]);
+        
+        return response()->json(['message' =>  $diagnostico], 200);
+        
+    }
+
+
     /**
      * Remove the specified resource from storage.
      */

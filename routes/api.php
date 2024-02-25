@@ -52,6 +52,8 @@ Route::group([
     Route::get('obtener-diagnostico/{id_cita}', [App\Http\Controllers\Api\V1\DiagnosticoController::class, 'mostrarDiagnostico']);
     Route::post('modificar-diagnostico/{id}', [App\Http\Controllers\Api\V1\DiagnosticoController::class, 'update']);
 
+    Route::get('mostrar-volante/{id}', [App\Http\Controllers\Api\V1\DiagnosticoController::class, 'mostrarVolante']);
+    Route::post('modificar-volante/{id}', [App\Http\Controllers\Api\V1\DiagnosticoController::class, 'actualizarVolante']);
     
     Route::apiResource('medicos', App\Http\Controllers\Api\V1\MedicoController::class);
     Route::get('medicos/{id_usuario_medico}', [App\Http\Controllers\Api\V1\MedicoController::class, 'listarPorId']);

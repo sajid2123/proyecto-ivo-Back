@@ -16,6 +16,7 @@ class Diagnostico extends Model
         'id_medico',
         'id_paciente',
         'id_cita',
+        'volante',
     ];
 
     public function medicos(){
