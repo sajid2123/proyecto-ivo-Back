@@ -75,7 +75,7 @@ Route::group([
     Route::post('crear-prueba', [App\Http\Controllers\Api\V1\PruebaController::class, 'store']);
     Route::get('citas-generales', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMasRecientes']);
     Route::delete('imagen/{id}', [App\Http\Controllers\Api\V1\ImagenController::class, 'eliminarImagen']);
-    Route::put('actualizar-prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'actualizarPrueba']);
+    Route::post('actualizar-prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'actualizarPrueba']);
 
 });
 
