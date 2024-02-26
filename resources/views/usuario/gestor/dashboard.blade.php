@@ -13,6 +13,30 @@
 
 
 <div class="container-fluid p-0 font colors">
+@if(session('success'))
+                <div class="modal-backdrop fade show"></div>
+            @endif
+        
+            <div class="modal fade {{ session('success') ? ' show d-block' : '' }}" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-modal="true" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-body rounded-3">
+                        <div class="row modal-header-personalizado">
+                            <i class="fa-solid fa-circle-check modal-icon"></i>
+                        </div>
+                        <div class="row modal-body">
+                            @if(session('success'))
+                                <p>{{ session('success') }}</p>
+                            @endif
+                        </div>
+                        <div class="row modal-footer-personalizado">
+                            <a href="{{ route('gestor.usuario')}}">Cerrar</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+            </div>
     <div class="row">
         <div class="col-2 p-0">
             @include('usuario.gestor.nav')
@@ -35,21 +59,13 @@
                 </form>
                 </div>
                 <div class="col-6 d-flex justify-content-end p-0">
-                    <a href="{{route('gestor.add-usuario')}}" class="btn-add-user py-0">Add Usuario</a>
+                    <a href="{{route('gestor.add-usuario')}}" class="btn-add-user py-0">Alta Usuario</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
+          
             <div class="row mt-5">
                 <div class="col-12">
-                    <table class="table table-bordered" id="usuarios-table">
+                    <table class="table table-hover" id="usuarios-table">
                         <thead>
                             <tr>
                                 <th>DNI</th>
@@ -92,8 +108,14 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        new DataTable('#usuarios-table');
-    });
+    var dtOptions = {
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+                emptyTable: ''
+            },
+            pagingType: "numbers",
+            info: false
+        };
+        new DataTable('#usuarios-table', dtOptions);
 </script>
 

@@ -56,14 +56,7 @@ class UsuarioController extends Controller
         $rols = Rol::all();
         return view('usuario.gestor.addUsuario', compact('breadcrumbs', 'servicios', 'rols'));
     }
-    /** 
-    * Show the form for creating a new resource.
-    */
-    public function create()
-    {
-        //
-    }
-
+  
     /**
      * Store a newly created resource in storage.
      */
@@ -158,8 +151,6 @@ class UsuarioController extends Controller
         
     }
     public function anyadirUsuarioEspecifico($nombreRol, $user, $nombreServicio){
-
-    
         switch($nombreRol){
             case 'Gestor':
                 Gestor::create([
@@ -190,32 +181,111 @@ class UsuarioController extends Controller
                 break;
         }
     }
-    /**
-     * Display the specified resource.
-     */
-    public function show(Usuario $usuario)
-    {
-        //
-    }
-
+  
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-
+        $breadcrumbs = [
+            ['volver' => 'Volver', 'routa-volver' => route('gestor.usuario')],
+            ['nav-opcion-1' => 'Usuarios', 'routa-opcion-1' => route('gestor.usuario')],
+            ['nav-opcion-2' => 'Modificar Usuario', 'routa-opcion-2' => null]
+        ];
         $usuario = Usuario::findOrFail($id);
         $servicios = Servicio::all();
         $rols = Rol::all();
-        return view('usuario.gestor.edit', compact('usuario', 'servicios', 'rols'));
+        return view('usuario.gestor.edit', compact('usuario', 'servicios', 'rols', 'breadcrumbs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, String $id)
     {
-        //
+        $user = Usuario::find($id);
+        $messages = [
+            'dni.required' => 'El campo DNI es obligatorio.',
+            'dni.string' => 'El DNI debe ser una cadena de texto.',
+            'dni.max' => 'El DNI no debe ser mayor a 255 caracteres.',
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.string' => 'El nombre debe ser una cadena de texto.',
+            'nombre.max' => 'El nombre no debe ser mayor a 255 caracteres.',
+            'apellido1.required' => 'El campo primer apellido es obligatorio.',
+            'apellido1.string' => 'El primer apellido debe ser una cadena de texto.',
+            'apellido1.max' => 'El primer apellido no debe ser mayor a 255 caracteres.',
+            'apellido2.string' => 'El segundo apellido debe ser una cadena de texto.',
+            'sexo.required' => 'El campo sexo es obligatorio.',
+            'correo.required' => 'El campo correo es obligatorio.',
+            'correo.email' => 'El correo electrónico no tiene un formato válido.',
+            'correo.max' => 'El correo no debe ser mayor a 255 caracteres.',
+            'codigoPostal.required' => 'El código postal es obligatorio.',
+            'codigoPostal.numeric' => 'El código postal debe ser numérico.',
+            'codigoPostal.digits' => 'El código postal debe tener 5 dígitos.',
+            'direccion.required' => 'El campo dirección es obligatorio.',
+            'direccion.string' => 'La dirección debe ser una cadena de texto.',
+            'direccion.max' => 'La dirección no debe ser mayor a 255 caracteres.',
+            'fechaNac.required' => 'La fecha de nacimiento es obligatoria.',
+            'fechaNac.date' => 'La fecha de nacimiento no tiene un formato válido.',
+            'telefono.required' => 'El campo teléfono es obligatorio.',
+            'telefono.string' => 'El teléfono debe ser una cadena de texto.',
+            'usuario.required' => 'El campo usuario es obligatorio.',
+            'usuario.string' => 'El nombre de usuario debe ser una cadena de texto.',
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'servicio.required' => 'El campo servicio es obligatorio.',
+            'servicio.exists' => 'El servicio seleccionado no es válido.',
+            'rol.required' => 'El campo rol es obligatorio.',
+            'rol.exists' => 'El rol seleccionado no es válido.',
+        ];
+        $rules = [
+            'dni' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'apellido1' => 'required|string|max:255',
+            'apellido2' => 'sometimes|string|max:255',
+            'sexo' => 'required|string',
+            'correo' => 'required|string|email|max:255',
+            'codigoPostal' => 'required|numeric|digits:5',
+            'direccion' => 'required|string|max:255',
+            'fechaNac' => 'required|date',
+            'telefono' => 'required|numeric|digits:9',
+        ];
+        
+        if (!empty($request->password)) {
+            $rules['password'] = 'string|min:8|confirmed';
+        }
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()) {
+            return redirect()->route('usuario.edit', ['id' => $id])
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+        $validatedData = $validator->validated();
+
+        
+
+        $updateData = [
+            'dni' => $validatedData['dni'],
+            'nombre' => $validatedData['nombre'],
+            'correo' => $validatedData['correo'],
+            'apellido1' => $validatedData['apellido1'],
+            'apellido2' => $validatedData['apellido2'],
+            'Sexo' => $validatedData['sexo'],
+            'codigo_postal' => $validatedData['codigoPostal'],
+            'direccion' => $validatedData['direccion'],
+            'fecha_nacimiento' => $validatedData['fechaNac'],
+            'telefono' => $validatedData['telefono'],
+        ];
+        
+        if (!empty($validatedData['password'])) {
+            $updateData['password'] = Hash::make($validatedData['password']);
+        }
+        
+        $user->update($updateData);
+        return redirect()->route('gestor.usuario')->with('success', 'Usuario modificado correctamente.');
     }
 
     /**

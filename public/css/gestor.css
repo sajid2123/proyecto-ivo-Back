@@ -118,11 +118,12 @@
 .btn-add-rol:hover{
     color: white;
 }
+
 .modal-icon{
     color: green;
     font-size: 50px;
 }
-.modal-style{
+.modal-body{
     background-color: #DCECFB;
 }
 .modal-personalizado{
@@ -145,16 +146,74 @@
 .modal-footer-personalizado a{
     color: white;
 }
+.modal-footer-personalizado a:hover{
+    color: white;
+}
 .modal-body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 .modal-body p{
     font-size: 25px;
     font-weight: bold;
-}
+} 
 .modal-header-personalizado{
     display: flex;
     justify-content: center;
     padding: 20px;
+} 
+
+
+#DataTables_Table_0_filter{
+    font-family: manrope;
+}
+
+#DataTables_Table_0_length{
+    font-family: manrope;
+}
+
+table > thead > tr > .sorting:nth-child(1){ 
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: white;
+}
+
+table > thead > tr > .sorting:nth-last-child(1){ 
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: white;
+}
+
+table > thead > tr > .sorting{ 
+    background-color: #092C4C;
+    color: white;
+}
+
+table > thead > tr > .sorting::before .sorting::after{
+    color: white; 
+}
+
+.title{
+    font-size: 40px;
+    font-family: manrope;
+    font-weight: bold;
+}
+
+.table > thead > tr > .sorting {
+    padding: 15px;
+    font-size: 16px;
+}
+
+
+.table > tbody > tr > td {
+    padding: 15px;
+    font-size: 16px;
+}
+
+
+.pagination >  .page-item.active > .page-link {
+    background-color: #092C4C;
+    border-color: #092C4C;
 }

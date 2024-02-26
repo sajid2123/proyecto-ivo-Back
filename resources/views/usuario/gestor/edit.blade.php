@@ -8,27 +8,45 @@
 
 <div class="container-fluid p-0 font">
     <div class="row">
-        <div class="col-2 p-0">
+        <div class="col-2">
             @include('usuario.gestor.nav')
         </div>
-        <div class="col-10 p-0 px-5">
-            <div class="row">
-                <div class="col-12">
-
+        <div class="col-10 p-0">
+            <div class="row mt-4">
+                <div class="col-12 p-0">
+                    <x-breadcrumbs :breadcrumbs="$breadcrumbs" />
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-4 px-5">
                 <div class="col-12">
-                    <h1 class="title">Modificar Usuario</h1>
+                    <h1 class="title color">Modificar Usuario</h1>
                 </div>
                 <div class="col-12">
                     <p class="sub-title-modificar-servicio">Introduce los nuevos datos</p>
                 </div>
             </div>
-            <div class="row mt-3">
+            @if($errors->any())
+                @isset($errors)
+                <div class="row mt-4">
+                    <div class="col-12">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        
+                    </div>
+                </div>
+                @endisset
+            @endif
+          
+            <div class="row mt-3 px-5">
                 <div class="col-12">
                 @isset($usuario)
-                        <form action="">
+                        <form method="POST" action="{{ route('usuario.modificar' , ['id' => $usuario->id_usuario]) }}">
+                        @csrf 
                             <div class="row">
                                 <div class="col-4">
                                     <label for="dni" class="my-3 label-personalizado">DNI</label>
@@ -50,7 +68,7 @@
                                     <label for="apellido1" class="my-3 label-personalizado">Primer Apellido</label>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control input-style"  name="apellido1" id="apellido1"  value="{{  $usuario->spellido1 }}">
+                                            <input type="text" class="form-control input-style"  name="apellido1" id="apellido1"  value="{{  $usuario->apellido1 }}">
                                         </div>
                                     </div>
                                 </div>
@@ -65,26 +83,20 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <label for="nombre" class="my-3 label-personalizado">Rol</label>
-                                    <div class="form-group">
-                                        <select class="form-group" id="rol" name="rol">
-                                            
-                                            @foreach($rols as $rol)
-                                                <option value="{{$rol->nombre}}">{{$rol->nombre}}</option>
-                                            @endforeach
-                                        </select>
+                                <label for="password" class="my-3 label-personalizado">Contraseña</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control input-style"  name="password" id="password">
                                     </div>
-                                    
+                                </div>
                                 </div>
                                 <div class="col-4">
-                                    <label for="apellido1" class="my-3 label-personalizado">Servicio</label>
-                                    <div class="form-group">
-                                        <select class="form-group" name="servicio" id="servicio">
-                                            @foreach($servicios as $servicio)
-                                                <option value="{{$servicio->nombre_servicio}}">{{$servicio->nombre_servicio}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                        <label for="password_confirmation" class="my-3 label-personalizado">Confirmacion contraseña</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" class="form-control input-style"  name="password_confirmation" id="passwordConfirmar">
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -93,8 +105,8 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <select class="form-group" id="sexo" name="sexo">
-                                                <option value="Hombre">Hombre</option>
-                                                <option value="Mujer">Mujer</option>
+                                                <option value="Hombre" {{ $usuario->Sexo == 'Hombre' ? 'selected' : '' }} >Hombre</option>
+                                                <option value="Mujer" {{ $usuario->Sexo == 'Mujer' ? 'selected' : '' }}>Mujer</option>
                                             </select>
                                         </div>
                                     </div>
@@ -137,9 +149,14 @@
                                     <label for="telefono" class="my-3 label-personalizado">Telefono</label>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control input-style"  name="telefono" id="telefono"  value="{{  $usuario->codigo_postal }}">
+                                            <input type="text" class="form-control input-style"  name="telefono" id="telefono"  value="{{  $usuario->telefono }}">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <input type="submit" class="btn-pasos mx-2" value="Modificar" >
                                 </div>
                             </div>
                         </form>
