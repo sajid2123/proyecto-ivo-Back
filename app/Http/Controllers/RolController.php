@@ -12,7 +12,7 @@ class RolController extends Controller
         $breadcrumbs = [
             ['volver' => 'Volver', 'routa-volver' => route('gestor.rol')],
             ['nav-opcion-1' => 'Rol', 'routa-opcion-1' => route('gestor.rol')],
-            ['nav-opcion-2' => 'Alta rol', 'routa-opcion-2' => null]
+            ['nav-opcion-2' => 'Alta Rol', 'routa-opcion-2' => null]
         ];
         return view('usuario.gestor.rol.addRol', compact('breadcrumbs'));
     }
@@ -83,7 +83,7 @@ class RolController extends Controller
         $breadcrumbs = [
             ['volver' => 'Volver', 'routa-volver' => route('gestor.rol')],
             ['nav-opcion-1' => 'Rol', 'routa-opcion-1' => route('gestor.rol')],
-            ['nav-opcion-2' => 'Alta rol', 'routa-opcion-2' => null]
+            ['nav-opcion-2' => 'Modificar Rol', 'routa-opcion-2' => null]
         ];
         $rol = Rol::findOrFail($id);
         return view('usuario.gestor.rol.edit', compact('rol', 'breadcrumbs'));

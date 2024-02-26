@@ -41,6 +41,7 @@ Route::group(['middleware' => 'gestor'], function(){
     Route::get('/usuario/add-usuario', [UsuarioController::class, 'addUsuario'])->name('gestor.add-usuario');
     Route::post('/usuario/add-usuario/anyadir', [UsuarioController::class, 'store'])->name('usuario.crear');
     Route::get('/usuario/{id}/editar', [UsuarioController::class, 'edit'])->name('usuario.edit');
+    Route::post('/usuario/{id}/editar/modificar', [UsuarioController::class, 'update'])->name('usuario.modificar');
     Route::get('/usuario/{id}/perfil', [UsuarioController::class, 'perfil'])->name('usuario.perfil');
     Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy'])->name('usuario.destroy');
 

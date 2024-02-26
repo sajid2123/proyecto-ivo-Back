@@ -20,38 +20,40 @@
         <div class="col-10 p-0 px-5">
             <div class="row mt-4">
                 <div class="col-12">
-                    <h1 class="title">Servicios</h1>
+                    <h1 class="title color">Servicios</h1>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12 d-flex justify-content-end">
-                    <a href="{{ route('gestor.add-servicio')}}" class="btn-add-servicio">Add Servicio</a>
+                    <a href="{{ route('gestor.add-servicio')}}" class="btn-add-servicio">Alta Servicio</a>
                 </div>
             </div>
             @if(session('success'))
                 <div class="modal-backdrop fade show"></div>
             @endif
         
-            <div class="modal fade  mt-5 {{ session('success') ? ' show d-block' : '' }}" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-modal="true" aria-hidden="true">
-                <div class="modal-dialog " role="document">
+            <div class="modal fade {{ session('success') ? ' show d-block' : '' }}" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-modal="true" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                    <div class="modal-header-personalizado modal-style">
-                        <i class="fa-solid fa-circle-check modal-icon"></i>
-                    </div>
-                    <div class="modal-body  modal-style">
-                        @if(session('success'))
-                        <p>{{ session('success') }}</p>
-                        @endif
-                    </div>
-                    <div class="modal-footer-personalizado modal-style">
-                        <a href="{{ route('gestor.servicio')}}">Cerrar</a>
+                    <div class="modal-body rounded-3">
+                        <div class="row modal-header-personalizado">
+                            <i class="fa-solid fa-circle-check modal-icon"></i>
+                        </div>
+                        <div class="row modal-body">
+                            @if(session('success'))
+                                <p>{{ session('success') }}</p>
+                            @endif
+                        </div>
+                        <div class="row modal-footer-personalizado">
+                            <a href="{{ route('gestor.servicio')}}">Cerrar</a>
+                        </div>
                     </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-12">
-                    <table class="table table-bordered" id="usuarios-table">
+                    <table class="table table-hover" id="servicios-table">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -88,7 +90,13 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        new DataTable('#usuarios-table');
-    });
+      var dtOptions = {
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+                emptyTable: ''
+            },
+            pagingType: "numbers",
+            info: false
+        };
+        new DataTable('#servicios-table', dtOptions);
 </script>

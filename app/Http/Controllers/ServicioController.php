@@ -14,7 +14,7 @@ class ServicioController extends Controller
         $breadcrumbs = [
             ['volver' => 'Volver', 'routa-volver' => route('gestor.servicio')],
             ['nav-opcion-1' => 'Servicios', 'routa-opcion-1' => route('gestor.servicio')],
-            ['nav-opcion-2' => 'Alta servicio', 'routa-opcion-2' => null]
+            ['nav-opcion-2' => 'Alta Servicio', 'routa-opcion-2' => null]
         ];
         return view('usuario.gestor.servicio.addServicio', compact('breadcrumbs'));
     }
@@ -86,7 +86,7 @@ class ServicioController extends Controller
         $breadcrumbs = [
             ['volver' => 'Volver', 'routa-volver' => route('gestor.servicio')],
             ['nav-opcion-1' => 'Servicios', 'routa-opcion-1' => route('gestor.servicio')],
-            ['nav-opcion-2' => 'Alta servicio', 'routa-opcion-2' => null]
+            ['nav-opcion-2' => 'Modificar Servicio', 'routa-opcion-2' => null]
         ];
         $servicio = Servicio::findOrFail($id);
         return view('usuario.gestor.servicio.edit', compact('servicio', 'breadcrumbs'));

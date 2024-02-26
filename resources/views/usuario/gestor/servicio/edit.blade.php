@@ -60,10 +60,10 @@
                                         </div>
                                     </div>
                                 </div>
-                    <div class="row mt-5">
-                        <div class="col-12 d-flex justify-content-end">
-                            <input type="submit" class="btn-pasos mx-2" value="Modificar">
-                        </div>
+                            <div class="row mt-5">
+                            <div class="col-12 d-flex justify-content-end">
+                                <input type="submit" class="btn-pasos mx-2" value="Modificar">
+                            </div>
                     </div>
                     </form>
                 </div>
