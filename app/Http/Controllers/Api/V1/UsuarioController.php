@@ -32,6 +32,7 @@ class UsuarioController extends Controller
             'Sexo' => 'required',
             'fecha_nacimiento' => 'required',
             'correo' => 'required',
+            'telefono' => 'required',
             'codigo_postal' => 'required',
             'direccion' => 'required',
             'nombre_cuenta' => 'required',
@@ -48,6 +49,7 @@ class UsuarioController extends Controller
         $usuario -> Sexo = $request -> input('Sexo');
         $usuario -> fecha_nacimiento = $request -> input('fecha_nacimiento');
         $usuario -> correo = $request -> input('correo');
+        $usuario -> telefono = $request -> input('telefono');
         $usuario -> codigo_postal = $request -> input('codigo_postal');
         $usuario -> direccion = $request -> input('direccion');
         $usuario -> nombre_cuenta = $request -> input('nombre_cuenta');
