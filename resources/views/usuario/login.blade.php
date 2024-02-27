@@ -18,7 +18,7 @@
             <div class="row mb-2">
                 <div class="col-12 text-center">
                     <h1 class="title">
-                        Prueba
+                        Inicia sesión
                     </h1>
                 </div> 
             </div>  
