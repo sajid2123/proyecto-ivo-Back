@@ -27,7 +27,12 @@ class PruebaController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+        
         $messages = [
             'fecha.required' => 'El campo fecha es obligatorio.',
             'fecha.date' => 'El campo fecha tiene que ser date.',
@@ -90,6 +95,12 @@ class PruebaController extends Controller
 
     public function getPrueba($id){
 
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $prueba = Prueba::where('id_cita', $id)->first();
 
     
@@ -125,6 +136,11 @@ class PruebaController extends Controller
 
         $prueba = Prueba::find($id);
 
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
     
         if (!$prueba) {
             return response()->json(['error' => 'Prueba no encontrada.'], 404);
@@ -154,7 +170,13 @@ class PruebaController extends Controller
     }
     
     public function actualizarPrueba(Request $request, $id_prueba){
-      
+        
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $prueba = Prueba::find($id_prueba);
         $prueba->update([
             'informe' =>  $request->input('informe'),
@@ -185,7 +207,11 @@ class PruebaController extends Controller
         return response()->json(['message' => 'Informacion modificada correctamente .']); 
     }
     public function getAllPruebasPaciente($id_paciente){
-
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
        
         $pruebas =  PruebaResource::collection(Prueba::where('id_usuario_paciente' , $id_paciente)->get());
 

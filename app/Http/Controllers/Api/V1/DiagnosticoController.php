@@ -24,6 +24,13 @@ class DiagnosticoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $request->validate([
             'informe' => 'required',
             'tratamientos' => 'required',
@@ -59,6 +66,12 @@ class DiagnosticoController extends Controller
 
     public function mostrarDiagnostico($idCita){
 
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $diagnostico = new Diagnostico();
 
         $diagnostico = Diagnostico::where('id_cita', $idCita) -> first();
@@ -79,6 +92,13 @@ class DiagnosticoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $request->validate([
             'informe' => 'required',
             'tratamiento' => 'required',
@@ -97,6 +117,13 @@ class DiagnosticoController extends Controller
     }
 
     public function mostrarVolante($idCita){
+
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $diagnostico = new Diagnostico();
 
         $diagnostico = Diagnostico::where('id_cita', $idCita) -> first();
@@ -113,7 +140,14 @@ class DiagnosticoController extends Controller
     }
 
     public function actualizarVolante(Request $request, $id)
-    {
+    {   
+
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $request->validate([
             'volante' => 'required',
         ]);

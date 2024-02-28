@@ -14,6 +14,12 @@ class PacienteController extends Controller
      */
     public function index(Request $request)
     {
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $idUsuarioAdministrativo = $request->input('id_usuario_administrativo');
 
         // Lógica para recuperar pacientes según el ID del administrativo
@@ -28,6 +34,12 @@ class PacienteController extends Controller
     public function store(Request $request)
     {
         
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $paciente = new Paciente();
 
         $user = Usuario::where('dni', $request -> input('dni_paciente'))->first(); // Busca al paciente por su DNI
@@ -48,6 +60,12 @@ class PacienteController extends Controller
      */
     public function show($id)
     {
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $paciente = Paciente::with('usuario')->find($id); // Buscar al paciente por su ID
 
         if (!$paciente) {
