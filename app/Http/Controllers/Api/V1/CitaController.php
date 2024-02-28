@@ -11,6 +11,7 @@ use App\Models\Usuario;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\CitaRadiologoResource;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CitaController extends Controller
 {
@@ -19,6 +20,13 @@ class CitaController extends Controller
      */
     public function index(Request $request)
     {
+
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $idPaciente = $request->input('id_usuario_paciente');
         $estado = $request->input('estado');
 
@@ -44,6 +52,13 @@ class CitaController extends Controller
      */
     public function store(Request $request)
 {
+
+    $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
     // Validar los datos de la solicitud
     $request->validate([
         'id_usuario_paciente' => 'required|exists:pacientes,id_usuario_paciente',
@@ -88,6 +103,13 @@ class CitaController extends Controller
      */
     public function update(Request $request, Cita $cita)
     {
+
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         // Validar los datos recibidos en la solicitud
         $request->validate([
             'id_servicio' => 'nullable|integer',
@@ -125,7 +147,13 @@ class CitaController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Cita $cita)
-    {
+    {   
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $cita->delete();
         return response()->json(null, 204);
     }
@@ -135,6 +163,12 @@ class CitaController extends Controller
     }
 
     public function getCitasMasRecientes(){
+
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
 
         $citas = new Cita();
 
@@ -151,6 +185,11 @@ class CitaController extends Controller
 
     public function getCitasPendientesRadiologo(String $fecha, int $id_radiologo){
 
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
 
         $citas = CitaRadiologoResource::collection(Cita::where([
                                                     ['id_usuario_radiologo', '=', $id_radiologo],
@@ -181,6 +220,12 @@ class CitaController extends Controller
 
     public function getCitasPendientesMedico(String $fecha, int $id_medico){
        
+        $user = $this->autentificarTokenJWT();
+        
+        if ($user -> original) {
+            return response()->json($user);
+        }
+
         $citas = CitaMedicoResource::collection(Cita::where([
                                                     ['id_usuario_medico', '=', $id_medico],
                                                     ['fecha', '=', $fecha],
@@ -193,15 +238,19 @@ class CitaController extends Controller
     }
 
     public function getCitasRealizadasMedico(String $fecha, int $id_medico){
-
-        $citas = CitaMedicoResource::collection(Cita::where([
-                                                    ['id_usuario_medico', '=', $id_medico],
-                                                    ['fecha', '=', $fecha],
-                                                    ['estado', '=', 'realizada']
-                                                    ])->get());
-
+       
+        $user = $this->autentificarTokenJWT();
         
+        if ($user -> original) {
+            return response()->json($user);
+        }
 
+            $citas = CitaMedicoResource::collection(Cita::where([
+                ['id_usuario_medico', '=', $id_medico],
+                ['fecha', '=', $fecha],
+                ['estado', '=', 'realizada']
+                ])->get());
+        
         return response()->json($citas, 200);
 
     }

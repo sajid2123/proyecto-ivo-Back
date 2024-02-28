@@ -52,6 +52,9 @@ class MedicoController extends Controller
 
      public function listarPorId($id_usuario_medico)
     {
+
+        
+
         $medico = Medico::with('usuario')->find($id_usuario_medico);
 
         if (!$medico) {

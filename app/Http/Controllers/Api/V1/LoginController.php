@@ -50,4 +50,10 @@ class LoginController extends Controller
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
+
+    public function logOut(){
+        $user = auth() -> logout();
+
+        return response()->json("Sesion Cerrada", 201);
+    }
 }
