@@ -18,16 +18,16 @@ use App\Http\Controllers\RolController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/hola', function () {
-    return 'Hola mundo';
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/hola', function () {
+//     return 'Hola mundo';
+// });
 
 
 
-Route::get('/login', [UsuarioController::class, 'Index'])->name('login_form');
+Route::get('/', [UsuarioController::class, 'Index'])->name('login_form');
 Route::post('/login/owner', [UsuarioController::class, 'Login'])->name('usuario.login');
 
 
