@@ -23,6 +23,7 @@ class CitaAdministrativoResource extends JsonResource
         return [
             'sip' => $this->sip,
             'hora' => $this->hora,
+            'id_cita' => $this->id_cita,
             'id_paciente' => $this->id_usuario_paciente,
             'nombre_paciente' => $paciente->nombre,
             'apellidos_paciente' => $paciente->apellido1 . " " . $paciente->apellido2,
