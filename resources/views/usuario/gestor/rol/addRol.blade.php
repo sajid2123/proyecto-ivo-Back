@@ -25,6 +25,15 @@
                     <h1 class="title">Alta Rol</h1>
                 </div>
             </div>
+            <div id="errores-js" class="row mt-4" style="display: none;">
+                <div class="col-12 px-5">
+                    <div class="alert alert-danger">
+                        <ul id="lista-errores">
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
             @if($errors->any())
                 @isset($errors)
                 <div class="row mt-4">

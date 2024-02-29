@@ -145,7 +145,7 @@
                                 <div class="col-4">
                                     <label for="nombre" class="my-3 label-personalizado">Rol</label>
                                     <div class="form-group">
-                                        <select class="form-group" id="rol" name="rol">
+                                        <select class="form-group form-select" id="rol" name="rol">
                                             @foreach($rols as $rol)
                                                 <option value="{{$rol->nombre}}">{{$rol->nombre}}</option>
                                             @endforeach
@@ -156,7 +156,7 @@
                                 <div class="col-4">
                                     <label for="apellido1" class="my-3 label-personalizado">Servicio</label>
                                     <div class="form-group">
-                                        <select class="form-group" name="servicio" id="servicio">
+                                        <select class="form-group form-select" name="servicio" id="servicio">
                                             @foreach($servicios as $servicio)
                                                 <option value="{{$servicio->nombre_servicio}}">{{$servicio->nombre_servicio}}</option>
                                             @endforeach
@@ -169,12 +169,10 @@
                                 <div class="col-4">
                                     <label for="dni" class="my-3 label-personalizado">Sexo</label>
                                     <div class="form-group">
-                                        <div class="input-group">
-                                            <select class="form-group" id="sexo" name="sexo">
+                                            <select class="form-group form-select" id="sexo" name="sexo">
                                                 <option value="Hombre">Hombre</option>
                                                 <option value="Mujer">Mujer</option>
                                             </select>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-4">

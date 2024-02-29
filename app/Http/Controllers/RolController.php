@@ -64,7 +64,7 @@ class RolController extends Controller
             'fecha_creacion' => $validatedData['fecha_creacion'],
         ]);
         
-        return redirect()->route('gestor.add-rol')->with('success', 'Rol creado correctamente');
+        return redirect()->route('gestor.rol')->with('success', 'Rol creado correctamente');
     }
 
     /**
