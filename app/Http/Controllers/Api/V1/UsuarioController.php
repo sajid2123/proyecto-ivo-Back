@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\NombreUsuarioResource;
 use App\Http\Resources\V1\UsuarioResource;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -63,9 +64,13 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show(int $id_rol)
     {
-        //
+        
+        $usuario = NombreUsuarioResource::collection(Usuario::where('id_rol', $id_rol)->get());    
+        
+        return response()->json($usuario, 201);
+    
     }
 
     /**

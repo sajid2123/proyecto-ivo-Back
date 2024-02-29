@@ -78,6 +78,8 @@ Route::group([
     Route::get('informacion-prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'getPruebaByPruebaId']);
 
     
+    Route::get('obtener-personal/{id_rol}', [App\Http\Controllers\Api\V1\UsuarioController::class, 'show']);
+
 
     Route::get('citas-pendiente-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasPendientesRadiologo']);
     Route::get('citas-realizada-radiologo/{fecha}/{id_radiologo}', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasRealizadaRadiologo']);
