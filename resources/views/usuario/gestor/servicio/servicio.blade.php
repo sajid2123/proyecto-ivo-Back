@@ -66,7 +66,7 @@
                                 <tr>
                                     <td>{{ $servicio->nombre_servicio }}</td>
                                     <td>{{ $servicio->fecha_creacion }}</td>
-                                    <td class="d-flex justify-content-center">
+                                    <td class="text-center">
                                         <a href="{{ route('servicio.edit' , ['id' => $servicio->id_servicio])}}">
                                             <i class="fa-solid fa-pen-to-square mx-3 color"></i>
                                         </a>

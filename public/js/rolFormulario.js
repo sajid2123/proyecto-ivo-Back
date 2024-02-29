@@ -52,10 +52,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   
     function nextStep() {
-      if (currentStep < totalSteps) {
+      let validacionPasada = true;
+      if (currentStep === 1) validacionPasada = validarPaso1();
+
+
+      if (validacionPasada && currentStep < totalSteps) {
         currentStep++;
         showStep(currentStep);
       }
+      // if (currentStep < totalSteps) {
+      //   currentStep++;
+      //   showStep(currentStep);
+      // }
     }
   
     function previousStep() {
@@ -85,6 +93,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // saveData(currentStep);
     document.getElementById('siguiente').addEventListener('click' , nextStep);
     document.getElementById('anterior').addEventListener('click' , previousStep);
+
+    function validarPaso1(){
+
+      let valido = true;
+      let mensajesError = [];
+  
+      
+      
+      let nombreRol = document.getElementById('nombre_rol').value;
+      if( nombreRol.length === 0 || nombreRol.length > 255 ) {
+        mensajesError.push('El nombre de rol es obligatoria y debe tener menos de 255 caracteres..');
+        valido =  false;
+      }
+      // Validación fecha
+      let fechaCreacion = document.getElementById('fecha_creacion').value;
+      if(fechaCreacion.length === 0 || !/^\d{4}-\d{2}-\d{2}$/.test(fechaCreacion)) {
+          mensajesError.push('La Fecha de Creacion es obligatoria y debe seguir el formato aaaa-mm-dd.');
+          valido = false;
+      }
+  
+      mostrarMensajes(mensajesError);
+      return valido;
+  
+    }
+    function mostrarMensajes(mensajesError){
+      let contenedorErrores = document.getElementById('errores-js');
+      let listaErrores = document.getElementById('lista-errores');
+  
+      while (listaErrores.firstChild) {
+          listaErrores.removeChild(listaErrores.firstChild);
+      }
+  
+      if(mensajesError.length > 0) {
+          mensajesError.forEach(function(error) {
+              let li = document.createElement('li');
+              li.textContent = error;
+              listaErrores.appendChild(li);
+          });
+  
+          contenedorErrores.style.display = 'block'; 
+      } else {
+          contenedorErrores.style.display = 'none'; 
+      }
+    }
   
     showStep(currentStep);
 });

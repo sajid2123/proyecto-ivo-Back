@@ -20,11 +20,25 @@
                     <x-breadcrumbs :breadcrumbs="$breadcrumbs" />
                 </div>
             </div>
+            <div class="row mt-4">
+                <div class="col-12 px-5">
+                    <h1 class="title color">Alta Usuario</h1>
+                </div>
+            </div>
+            <div id="errores-js" class="row mt-4" style="display: none;">
+                <div class="col-12 px-5">
+                    <div class="alert alert-danger">
+                        <ul id="lista-errores">
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
             @if($errors->any())
                 @isset($errors)
                 <div class="row mt-4">
                     <div class="col-12 px-5">
-                        <h1 class="title">Alta Usuario</h1>
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -59,7 +73,7 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="col-12 px-5 ">
+                <div class="col-12 px-5 color">
                     <div class="d-flex">
                        <div class="col-4 d-flex justify-content-center py-2 active-paso" id="paso-barra-1">
                             <span>
@@ -131,7 +145,7 @@
                                 <div class="col-4">
                                     <label for="nombre" class="my-3 label-personalizado">Rol</label>
                                     <div class="form-group">
-                                        <select class="form-group" id="rol" name="rol">
+                                        <select class="form-group form-select" id="rol" name="rol">
                                             @foreach($rols as $rol)
                                                 <option value="{{$rol->nombre}}">{{$rol->nombre}}</option>
                                             @endforeach
@@ -142,7 +156,7 @@
                                 <div class="col-4">
                                     <label for="apellido1" class="my-3 label-personalizado">Servicio</label>
                                     <div class="form-group">
-                                        <select class="form-group" name="servicio" id="servicio">
+                                        <select class="form-group form-select" name="servicio" id="servicio">
                                             @foreach($servicios as $servicio)
                                                 <option value="{{$servicio->nombre_servicio}}">{{$servicio->nombre_servicio}}</option>
                                             @endforeach
@@ -155,12 +169,10 @@
                                 <div class="col-4">
                                     <label for="dni" class="my-3 label-personalizado">Sexo</label>
                                     <div class="form-group">
-                                        <div class="input-group">
-                                            <select class="form-group" id="sexo" name="sexo">
+                                            <select class="form-group form-select" id="sexo" name="sexo">
                                                 <option value="Hombre">Hombre</option>
                                                 <option value="Mujer">Mujer</option>
                                             </select>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-4">

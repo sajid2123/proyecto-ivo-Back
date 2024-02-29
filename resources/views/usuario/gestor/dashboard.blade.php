@@ -47,9 +47,9 @@
                     <h1 class="title">Usuarios</h1>
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-3 px-2">
                 <div class="col-6 p-0">
-                <form method="GET" action="">
+                <form method="GET" action="" class="m-0">
                     <select name="tipo_usuario" class="select" onchange="this.form.submit()">
                         <option value="Médico" {{ $tipo_usuario == 'Médico' ? 'selected' : '' }}>Médico</option>
                         <option value="Radiólogo" {{ $tipo_usuario == 'Radiólogo' ? 'selected' : '' }}>Radiólogo</option>
@@ -80,7 +80,7 @@
                                     <td>{{ $usuario->dni }}</td>
                                     <td>{{ $usuario->nombre }}</td>
                                     <td>{{ $usuario->apellido1 . " " .  $usuario->apellido2}}</td>
-                                    <td class="d-flex justify-content-center">
+                                    <td class="text-center">
                                         <a href="{{ route('usuario.perfil' , ['id' => $usuario->id_usuario])}}">
                                             <i class="fa-solid fa-eye color"></i>
                                         </a>

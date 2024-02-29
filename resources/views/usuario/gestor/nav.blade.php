@@ -25,6 +25,7 @@
                             </li>
                             <li class="nav-item mt-3 pointer">
                                 <a class="nav-link  px-3  {{ request()->is('servicio', 'servicio/*') ? 'nav-active' : 'nav-opcion' }}" href="{{route('gestor.servicio')}}">
+                                    <i class="fa-solid fa-users-gear mx-2"></i>
                                     Servicios
                                 </a>
                             </li>
@@ -38,18 +39,23 @@
                     </div>
                 </div>  
 
-                <div class="row d-flex h-50 align-items-end">
-                    <div class="col-12  d-flex justify-content-center ">
-                            <div class="d-flex justify-content-center ">
+                <div class="row mt">
+                    <div class="col-12  d-flex align-items-end justify-content-center ">
+                            <div class="d-flex align-items-end justify-content-center ">
                                 <p class="mb-2 letra-login">{{Auth::guard('usuario')->user()->nombre[0]}}</p>
                             </div>
-                            <div class="d-flex justify-content-center "> 
+                            <div class="d-flex align-items-end justify-content-center "> 
+
                                 <div class="a-tag d-flex flex-column mx-4">
                                     <span class="nombre">{{Auth::guard('usuario')->user()->nombre}}</span>
                                     <span class="correo">{{Auth::guard('usuario')->user()->correo}}</span>
                                 </div>
                             </div>
+
                            <div class="d-flex justify-content-center ">
+
+                           <div class="d-flex align-items-end justify-content-center ">
+
                                 <a href="{{route('usuario.logout')}}" class="a-tag logout-icon">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 </a>

@@ -67,7 +67,7 @@ class ServicioController extends Controller
             'id_usuario_gestor' =>  Auth::guard('usuario')->user()->id_usuario,
         ]);
         
-        return redirect()->route('gestor.add-servicio')->with('success', 'Servicio creado correctamente.');
+        return redirect()->route('gestor.servicio')->with('success', 'Servicio creado correctamente.');
     }
 
     /**
