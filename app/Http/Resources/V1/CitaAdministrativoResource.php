@@ -26,7 +26,7 @@ class CitaAdministrativoResource extends JsonResource
             'id_paciente' => $this->id_usuario_paciente,
             'nombre_paciente' => $paciente->nombre,
             'apellidos_paciente' => $paciente->apellido1 . " " . $paciente->apellido2,
-            //'nombre_medico' => $medico -> has('nombre')? $medico -> nombre : $radiologo -> nombre,
+            'nombre_medico' => $medico->nombre ?? $radiologo->nombre,
             'servicio' => $servicio -> nombre_servicio
         ];
     }
