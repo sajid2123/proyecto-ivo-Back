@@ -147,7 +147,7 @@ class UsuarioController extends Controller
 
         $this->anyadirUsuarioEspecifico($nombreRol, $user, $nombreServicio);
         
-        return redirect()->route('gestor.add-usuario')->with('success', 'Usuario creado correctamente.');
+        return redirect()->route('gestor.usuario')->with('success', 'Usuario creado correctamente.');
         
     }
     public function anyadirUsuarioEspecifico($nombreRol, $user, $nombreServicio){

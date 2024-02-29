@@ -67,3 +67,15 @@
     margin-top: 270px !important;
 }
 
+.letra-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    padding: 20px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    font-weight: bolder;
+  }
