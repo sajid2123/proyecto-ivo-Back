@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CitaAdministrativoResource;
 use App\Http\Resources\V1\CitaMedicoResource;
 use App\Models\Cita;
+use App\Models\Diagnostico;
 use App\Models\Servicio;
 use App\Models\Usuario;
 use App\Models\Paciente;
@@ -153,7 +154,7 @@ class CitaController extends Controller
         if ($user -> original) {
             return response()->json($user);
         }
-
+       
         $cita->delete();
         return response()->json(null, 204);
     }

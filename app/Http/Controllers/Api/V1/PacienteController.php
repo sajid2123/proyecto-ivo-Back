@@ -52,7 +52,7 @@ class PacienteController extends Controller
 
         $paciente -> save();
 
-        return response()->json(['message' => 'Paciente registrado exitosamente'], 201);
+        return response()->json($paciente->id_usuario_paciente, 201);
     }
 
     /**
