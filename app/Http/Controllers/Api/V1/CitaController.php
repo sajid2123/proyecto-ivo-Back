@@ -178,7 +178,7 @@ class CitaController extends Controller
        $citas = CitaAdministrativoResource::collection(Cita::where([
                                             ['estado', '=', 'pendiente'],
                                             ['fecha', '>=', $fechaActual],
-                                            ]) -> skip(0) -> take(10) -> get());
+                                            ]) -> get());
 
        return response()->json($citas, 200);
     }
