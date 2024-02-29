@@ -20,11 +20,25 @@
                     <x-breadcrumbs :breadcrumbs="$breadcrumbs" />
                 </div>
             </div>
+            <div class="row mt-4">
+                <div class="col-12 px-5">
+                    <h1 class="title color">Alta Usuario</h1>
+                </div>
+            </div>
+            <div id="errores-js" class="row mt-4" style="display: none;">
+                <div class="col-12 px-5">
+                    <div class="alert alert-danger">
+                        <ul id="lista-errores">
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
             @if($errors->any())
                 @isset($errors)
                 <div class="row mt-4">
                     <div class="col-12 px-5">
-                        <h1 class="title">Alta Usuario</h1>
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -59,7 +73,7 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="col-12 px-5 ">
+                <div class="col-12 px-5 color">
                     <div class="d-flex">
                        <div class="col-4 d-flex justify-content-center py-2 active-paso" id="paso-barra-1">
                             <span>
