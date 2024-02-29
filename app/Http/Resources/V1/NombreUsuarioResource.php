@@ -15,7 +15,8 @@ class NombreUsuarioResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'nombre' => $this->nombre ." ". $this->apellido1
+            'nombre' => $this->nombre ." ". $this->apellido1,
+            'id_usuario_medico' => $this->id_usuario
         ];
     }
 }
