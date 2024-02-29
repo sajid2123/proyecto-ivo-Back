@@ -17,6 +17,7 @@ class CitaAdministrativoResource extends JsonResource
     {
         $medico = Usuario::find($this->id_usuario_medico);
         $paciente = Usuario::find($this->id_usuario_paciente);
+        $radiologo = Usuario::find($this->id_usuario_radiologo);
         $servicio = Servicio::find($this->id_servicio);
 
         return [
@@ -25,7 +26,7 @@ class CitaAdministrativoResource extends JsonResource
             'id_paciente' => $this->id_usuario_paciente,
             'nombre_paciente' => $paciente->nombre,
             'apellidos_paciente' => $paciente->apellido1 . " " . $paciente->apellido2,
-            'nombre_medico' => $medico -> nombre,
+            //'nombre_medico' => $medico -> has('nombre')? $medico -> nombre : $radiologo -> nombre,
             'servicio' => $servicio -> nombre_servicio
         ];
     }
