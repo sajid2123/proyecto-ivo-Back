@@ -30,21 +30,13 @@ class CitaController extends Controller
 
         $idPaciente = $request->input('id_usuario_paciente');
         $estado = $request->input('estado');
-
+        
         // Obtener todas las citas asociadas al paciente
-        $citas = Cita::where('id_usuario_paciente', $idPaciente)->get();
-
-        // Iterar sobre cada cita y cargar los datos del médico asociado
-        foreach ($citas as $cita) {
-            $medico = Usuario::find($cita->id_usuario_medico); // Suponiendo que los médicos están almacenados en la tabla 'usuarios'
-            $cita->nombre_medico = $medico ? $medico->nombre : null;
-
-            $servicio = Servicio::find($cita->id_servicio); // Suponiendo que los servicios están almacenados en la tabla 'servicios'
-            $cita->nombre_servicio = $servicio ? $servicio->nombre_servicio : null;
-        }
+        $citas = CitaAdministrativoResource::collection(Cita::where([['id_usuario_paciente', "=", $idPaciente],
+                                                                        ["estado", "LIKE", $estado]])->get());
 
         // Devolver las citas como JSON
-        return response()->json(['citas' => $citas], 200);
+        return response()->json($citas, 200);
     }
 
 
