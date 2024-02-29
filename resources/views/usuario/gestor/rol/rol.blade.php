@@ -66,7 +66,7 @@
                                 <tr>
                                     <td>{{ $rol->nombre }}</td>
                                     <td>{{ $rol->fecha_creacion }}</td>
-                                    <td class="d-flex justify-content-center">
+                                    <td class="text-center">
                                         <a href="{{ route('rol.edit' , ['id' => $rol->id_rol])}}">
                                             <i class="fa-solid fa-pen-to-square mx-3 color"></i>
                                         </a>
