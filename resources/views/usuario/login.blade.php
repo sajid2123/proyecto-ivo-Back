@@ -6,6 +6,8 @@
     <title>Iniciar sesión</title>
     <!-- Incluye Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
@@ -43,23 +45,37 @@
                 <div class="col-12 px-5">
                     <form method="POST" action="{{ route('usuario.login') }}">
                         @csrf <!-- Token CSRF para proteger tu formulario -->
-                        <label for="email">Correo</label>
+                        
                         <div class="form-group">
-                            <div class="input-group">
-                                <input type="email" class="form-control input-style" id="email" name="email" required autofocus>
-                            </div>
-                            
+                            <label for="email">Correo</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-user color user-icon"></i></span>
+                                    <input type="email" class="form-control input-style" id="email" name="email" required autofocus>
+                                </div>
                         </div>
-
                         <div class="form-group">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control input-style" id="password" name="password" required>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-lock color lock-icon"></i></span>
+                                    <input type="password" class="form-control input-style" id="password" name="password" required>
+                                </div>
                         </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group form-check d-flex align-items-center">
+                                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                                    <label class="form-check-label" for="remember">Recuérdame</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group form-check d-flex align-items-center justify-content-end">
+                                    
+                                    <label class="form-check-label" for="remember">¿Has olvidado la contraseña?</label>
+                                </div>
+                            </div>
+                        </div>
+                       
 
-                        <div class="form-group form-check d-flex align-items-center">
-                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember">Recuérdame</label>
-                        </div>
                         <div class="row justify-content-center">
                             <div class="col-4">
                                 <button type="submit" class="btn submit-btn btn-block">Inicia sesión</button>
@@ -67,11 +83,7 @@
                         </div>
                         
 
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                ¿Has olvidado tu contraseña?
-                            </a>
-                        @endif
+                    
             
                     </form>
                 </div>

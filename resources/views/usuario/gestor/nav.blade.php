@@ -25,6 +25,7 @@
                             </li>
                             <li class="nav-item mt-3 pointer">
                                 <a class="nav-link  px-3  {{ request()->is('servicio', 'servicio/*') ? 'nav-active' : 'nav-opcion' }}" href="{{route('gestor.servicio')}}">
+                                    <i class="fa-solid fa-users-gear mx-2"></i>
                                     Servicios
                                 </a>
                             </li>
