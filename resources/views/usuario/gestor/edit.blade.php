@@ -104,7 +104,7 @@
                                     <label for="dni" class="my-3 label-personalizado">Sexo</label>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <select class="form-group" id="sexo" name="sexo">
+                                            <select class="form-group form-select" id="sexo" name="sexo">
                                                 <option value="Hombre" {{ $usuario->Sexo == 'Hombre' ? 'selected' : '' }} >Hombre</option>
                                                 <option value="Mujer" {{ $usuario->Sexo == 'Mujer' ? 'selected' : '' }}>Mujer</option>
                                             </select>
