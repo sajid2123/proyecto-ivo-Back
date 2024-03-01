@@ -64,29 +64,8 @@
                     </div>
                 </div>
 
-                <!--
-                <div class="row mt">
-                <div class="row justify-content-cente">
-                    <div class="col-11">
-                         <div class="col-8 ms-3 d-flex align-items-center justify-content-between mx-auto">
-                            <div>
-                                <p class="mx-2 me-3 letra-login">{{Auth::guard('usuario')->user()->nombre[0]}}</p>
-                            </div>
-                            <div class="d-flex flex-column justify-content-start ">
-                                <p style="font-weight: 500; text-align: start;">{{Auth::guard('usuario')->user()->nombre}}</p>
-                                <p style="font-weight: 200;">{{Auth::guard('usuario')->user()->correo}}</p>
-                            </div>
-                            <div class="d-flex align-items-end justify-content-center ms-4">
-                                <a href="{{route('usuario.logout')}}" class="a-tag logout-icon">
-                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                </a>
-                           </div>
-          
-                        </div>
-                    </div>
-                </div>
 
-            </div>-->
+            </div> 
 
             </div>
         </div>
