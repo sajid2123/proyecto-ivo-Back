@@ -39,7 +39,7 @@
                     </div>
                 </div>  
 
-                <div class="row mt">
+                <div class="row h-50">
                     <div class="col-12  d-flex align-items-end justify-content-center ">
                             <div class="d-flex align-items-end justify-content-center ">
                                 <p class="mb-2 letra-login">{{Auth::guard('usuario')->user()->nombre[0]}}</p>
