@@ -25,6 +25,7 @@ class CitaAdministrativoResource extends JsonResource
             'hora' => $this->hora,
             'id_cita' => $this->id_cita,
             'id_paciente' => $this->id_usuario_paciente,
+            'fecha' => $this->fecha,
             'nombre_paciente' => $paciente->nombre,
             'apellidos_paciente' => $paciente->apellido1 . " " . $paciente->apellido2,
             'nombre_medico' => $medico->nombre ?? $radiologo->nombre,
