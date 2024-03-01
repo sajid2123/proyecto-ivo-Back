@@ -8,6 +8,7 @@ use App\Models\Rol;
 use App\Models\Medico;
 use App\Models\Gestor;
 use App\Models\Radiologo;
+use App\Models\Administrativo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
