@@ -7,47 +7,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash; // Agregado para usar la función Hash
+use Illuminate\Support\Facades\Http;
 use App\Models\Usuario;
 
 class LoginController extends Controller
 {
-    public function store(Request $request)
+    public function login(Request $request)
     {
-        try {
-            $request->validate([
-                'correo' => 'required|email',
-                'password' => 'required',
-            ]);
+         // Obtiene las credenciales del formulario
+    $credentials = $request->only('email', 'password');
 
-            $credentials = $request->only('correo', 'password');
+    // Realiza una solicitud POST a la API para verificar las credenciales
+    $response = Http::post('http://localhost:8000/api/v1/login', $credentials);
 
-            // Buscar usuario por correo electrónico
-            $user = Usuario::where('correo', $credentials['correo'])->first();
+    // Obtiene la respuesta de la API
+    $data = $response->json();
 
-            // Verificar si el usuario existe y la contraseña coincide usando Hash::check()
-            if ($user && Hash::check($credentials['password'], $user->password)) {
-                // Autenticar al usuario
-                Auth::login($user);
-
-                // Generar token JWT
-                $token = $user->createToken('LoginBack')->plainTextToken;
-
-                // Responder con los datos del usuario y el token
-                return response()->json([
-                    'data' => [
-                        'user' => $user,
-                        'token' => $token,
-                    ]
-                ], 200);
-            } else {
-                // Credenciales inválidas
-                throw ValidationException::withMessages([
-                    'correo' => ['Credenciales inválidas.'],
-                ]);
-            }
-        } catch (ValidationException $e) {
-            // Error de validación
-            return response()->json(['error' => $e->getMessage()], 401);
-        }
+    // Verifica si las credenciales son válidas
+    if ($response->successful()) {
+        // Credenciales válidas, redirige al usuario a la página deseada
+        return redirect()->route('pagina.deseada');
+    } else {
+        // Credenciales inválidas, muestra un mensaje de error
+        return back()->with('error', 'Correo o contraseña incorrectos');
+    }
     }
 }
+

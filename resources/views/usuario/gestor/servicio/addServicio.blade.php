@@ -111,9 +111,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                        
+                            </div>                        
                     </div>
                     
                     <div id="paso-2">

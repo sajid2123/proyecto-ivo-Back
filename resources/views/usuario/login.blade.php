@@ -8,6 +8,29 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
+
+<style>
+a {
+    color: white;
+    text-decoration: none;
+}
+
+#dInicioSesion {
+    background-color: #092C4C;
+    border-radius: 8px;
+    height: 45px;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+#aInicioSesion:hover {
+    color:white;
+    text-decoration: none;
+}
+
+</style>
+
 <body>
 <div class="container-fluid ">
     <div class="row heigth font color">
@@ -41,7 +64,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 px-5">
-                    <form method="POST" action="{{ route('usuario.login') }}">
+                    <form method="POST" >
                         @csrf <!-- Token CSRF para proteger tu formulario -->
                         <label for="email">Correo</label>
                         <div class="form-group">
@@ -61,8 +84,9 @@
                             <label class="form-check-label" for="remember">Recuérdame</label>
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-4">
-                                <button type="submit" class="btn submit-btn btn-block">Inicia sesión</button>
+                            <div id="dInicioSesion" class="col-4 text-center">
+                                @csrf
+                               <a id="aInicioSesion" href="{{ route('donacion.mostrar')}}">Iniciar sesión</a>
                             </div>
                         </div>
                         
@@ -89,38 +113,3 @@
 
 </body>
 </html>
-
-
-
-
-
-<!-- <h1>Aqui va login</h1>
-@if(Session::has('error'))
-{{ session::get('error')}}
-@else
-<h1>Else</h1>
-@endif
-
-
-<form action="{{ route('usuario.login') }}" method="POST">
-@csrf
-    <label for="correo">Correo</label>
-    <input type="email" name="email">
-    <br>
-    <label for="password">Contraseña</label>
-    <input type="password" name="pwd">
-    <br>
-    <input type="submit" value="Enviar">
-</form>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html> -->

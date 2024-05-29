@@ -19,7 +19,10 @@ class UsuarioResource extends JsonResource
         return [
             'dni' => $this->dni,
             'nombre' => $this->nombre,
+            'apellidos' => $this->apellido1 . ' ' . $this->apellido2,
             'Rol' => $rol->nombre,
+            'Contraseña' => $this->password,
+            'correo' => $this-> correo
         ];
     }
 }

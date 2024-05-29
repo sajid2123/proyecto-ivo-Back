@@ -25,20 +25,13 @@ class UsuarioController extends Controller
 
     public function Login(Request $request){
 
-        // dd($request->all());
-        $check = $request->all();
+        $credentials = $request->only('email', 'password');
 
-        $credentials = [
-            'correo' => $request->input('email'),
-            'password' => $request->input('password')
-        ];
-        //dd($credentials);
-        if (Auth::guard('usuario')->attempt($credentials)) {
-            return redirect()->route('gestor.usuario');
-        }else {
-            return redirect()->back()->with('error', 'La dirección de correo electrónico o la contraseña no son correctos. Verifica tus datos e inténtalo otra vez.')->withInput();
+        if (Auth::attempt($credentials)) {          
+            return redirect()->intended('/dashboard'); 
+        } else {
+            return back()->with('error', 'Credenciales incorrectas. Por favor, inténtalo de nuevo.');
         }
-
     }
     public function logout(Request $request)
     {
@@ -56,6 +49,33 @@ class UsuarioController extends Controller
         $rols = Rol::all();
         return view('usuario.gestor.addUsuario', compact('breadcrumbs', 'servicios', 'rols'));
     }
+
+    public function mostrarUsuarios()
+    {
+        return view('usuario.gestor.usuarios.usuarios');
+    }
+
+    public function mostrarDonacion()
+    {
+        return view('usuario.gestor.donacion.donacion');
+    }
+
+    public function crearDonacion()
+    {
+        return view('usuario.gestor.donacion.crearDonacion');
+    }
+
+    public function editarDonacion()
+    {
+        return view('usuario.gestor.donacion.editarDonacion');
+    }
+
+    public function datosDonacion()
+    {
+        return view('usuario.gestor.donacion.datosDonacion');
+    }
+
+
     /** 
     * Show the form for creating a new resource.
     */

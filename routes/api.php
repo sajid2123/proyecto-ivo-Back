@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\AuthFrontController;
 use App\Http\Controllers\Api\V1\AuthController;
-
+use App\Http\Controllers\Api\V1\MailController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,9 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-/*Route::group(['prefix' => 'v1'], function () {
-    Route::post('login', [LoginController::class, 'store']);
-});*/
+
+
+
 
 Route::group([
 
@@ -32,16 +32,29 @@ Route::group([
     'prefix' => 'v1'
 
 ], function ($router) {
+    //TFG
+    Route::apiResource('usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
+    Route::apiResource('donaciones', App\Http\Controllers\Api\V1\DonacionesController::class);
+    Route::get('donaciones/{id}', [App\Http\Controllers\Api\V1\DonacionesController::class, 'show']);
+    Route::get('donacionesCompletado', [App\Http\Controllers\Api\V1\DonacionesController::class, 'obtenerDonacionesPorEstadoCompletado']);
+    Route::get('donacionesNoCompletado', [App\Http\Controllers\Api\V1\DonacionesController::class, 'obtenerDonacionesPorEstadoNoCompletado']);
+    Route::delete('eliminar-donacion/{donacion}',  [App\Http\Controllers\Api\V1\DonacionesController::class, 'destroy']);
+    Route::post('crear-donacion',  [App\Http\Controllers\Api\V1\DonacionesController::class, 'store']);
+    Route::put('modificar-donacion/{donacion}', [App\Http\Controllers\Api\V1\DonacionesController::class, 'update']);
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('registrar-donante', [App\Http\Controllers\Api\V1\DonantesController::class, 'store']);
+    Route::post('realizar-donacion', [App\Http\Controllers\Api\V1\DonacionesRealizadasController::class, 'store']);
+    Route::get('donante/{idDonante}', [App\Http\Controllers\Api\V1\DonantesController::class, 'show']);
+    Route::post('login', [App\Http\Controllers\Api\V1\DonantesController::class, 'login']);
 
-    Route::post('login', [AuthFrontController::class, 'login']);
-    /*Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('me', [AuthController::class, 'me']);*/
+    Route::post('/send-email', [App\Http\Controllers\Api\V1\MailController::class, 'sendEmail']);
+
+    Route::apiResource('donaciones-realizadas', App\Http\Controllers\Api\V1\DonacionesRealizadasController::class);
+    Route::get('cantidad-donaciones/{idDonacion}', [App\Http\Controllers\Api\V1\DonacionesController::class, 'obtenerCantidadDonacionesPorDonacion']);
+    //TFG
 
     Route::apiResource('pacientes', App\Http\Controllers\Api\V1\PacienteController::class);
-    Route::apiResource('citas', App\Http\Controllers\Api\V1\CitaController::class);
-
-    
+    Route::apiResource('citas', App\Http\Controllers\Api\V1\CitaController::class);    
 
     Route::post('crear-citas', [App\Http\Controllers\Api\V1\CitaController::class, 'store']);
     Route::post('alta-paciente', [App\Http\Controllers\Api\V1\UsuarioController::class, 'store']);
@@ -58,7 +71,7 @@ Route::group([
 
     Route::apiResource('servicios', App\Http\Controllers\Api\V1\ServicioController::class);
     Route::delete('/api/v1/citas/{cita}', [App\Http\Controllers\Api\V1\CitaController::class, 'destroy']);
-    //Route::apiResource('usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
+   
     Route::put('usuarios/{usuario}', [App\Http\Controllers\Api\V1\UsuarioController::class, 'update']);
 
 
@@ -81,6 +94,7 @@ Route::group([
     Route::get('citas-generales', [App\Http\Controllers\Api\V1\CitaController::class, 'getCitasMasRecientes']);
     Route::delete('imagen/{id}', [App\Http\Controllers\Api\V1\ImagenController::class, 'eliminarImagen']);
     Route::post('actualizar-prueba/{id}', [App\Http\Controllers\Api\V1\PruebaController::class, 'actualizarPrueba']);
+    Route::apiResource('usuarios', App\Http\Controllers\Api\V1\UsuarioController::class);
 
 });
 
